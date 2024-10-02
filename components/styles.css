@@ -67,11 +67,23 @@
     font-optical-sizing: auto;
     font-weight: 700;
     font-size:  42pt;
-    width: 40%;
+    width: 50%;
     color: #d1d1d1;
     font-style: normal;
 }
 
 .home__title--color {
     color: #3FA2F6;
+}
+
+.home-sobrenos {
+    height: 100vh;
+}
+
+.home-sobrenos__title {
+    font-family: "SUSE", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size:  42pt;
+    font-weight: 800;
 }
