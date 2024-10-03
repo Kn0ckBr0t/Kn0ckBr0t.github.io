@@ -6,8 +6,21 @@
 
 :root {
     --textos-claro: #fff;
+    ---texts-cinza: #d1d1d1;
+    --textos-azulclaro: #3FA2F6;
 }
 
+[data-theme="light"] {
+    --txt: #ffffff;
+    --paragraph: #d1d1d1;
+}
+  
+[data-theme="dark"] {
+    --txt: #fff;
+    --paragraph: #d1d1d1;
+}
+
+  
 .header ul {
     padding: 20px;
     display: flex;
@@ -26,9 +39,9 @@
 }
 
 .header__image {
-    width: 6vw;
+    width: auto;
     max-width: 100%;
-    height: auto;
+    height: 4vw;
     transition: 100ms;
     cursor: pointer;
 }
@@ -44,7 +57,7 @@
 
 .header a {
     text-decoration: none;
-    color: var(--textos-claro);
+    color: var(--txt);
 }
 
 .home {
@@ -68,12 +81,12 @@
     font-weight: 700;
     font-size:  42pt;
     width: 50%;
-    color: #d1d1d1;
+    color: var(--paragraph);
     font-style: normal;
 }
 
 .home__title--color {
-    color: #3FA2F6;
+    color: var(--textos-azulclaro);
 }
 
 .home-sobrenos {

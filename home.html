@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
         <header class="header">
             <ul>
                 <li>
-                    <a href="./index"><img src="./assets/images/WorkWay.png" alt="logo" class="header__image"></a>
+                    <a href="./home"><img src="./assets/images/Logo-Alt.png" alt="logo" class="header__image"></a>
                 </li>
                 <div class="header__align">
                     <li>
@@ -30,7 +30,9 @@
                 </div>
                 <div class="header__align">
                     <li>
-                        <a href="#">ENG | PT</a>
+                        <a href="#" style="color: #8d8c8ce3;" id="ENG">EN</a>
+                        <a style="color: #8d8c8ce3;">|</a>
+                        <a href="#" style="color: #d1d1d1;" id="BR">BR</a>
                     </li>
                     <li>
                         <a href="#">DarkMode</a>
@@ -61,11 +63,18 @@
             itaque minus quam nostrum explicabo aliquam pariatur soluta recusandae.
         </p>
     </section>
-    <script src="https://website-widgets.pages.dev/dist/sienna.min.js" defer></script>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script src="components/script.js"></script>
 </body>
 </html>
-
-<!-- Fontes, fundo, logos novas, smooth scroll -->
