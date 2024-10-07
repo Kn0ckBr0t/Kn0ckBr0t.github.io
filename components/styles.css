@@ -5,19 +5,17 @@
 }
 
 :root {
-    --textos-claro: #fff;
-    ---texts-cinza: #d1d1d1;
-    --textos-azulclaro: #3FA2F6;
+    --azul-claro: #3FA2F6;
 }
 
 [data-theme="light"] {
-    --txt: #ffffff;
-    --paragraph: #d1d1d1;
+    --branco: #ffffff;
+    --cinza: #d1d1d1;
 }
   
 [data-theme="dark"] {
-    --txt: #fff;
-    --paragraph: #d1d1d1;
+    --branco: #ffffff;
+    --cinza: #d1d1d1;
 }
 
 .header ul {
@@ -56,15 +54,13 @@
 
 .header a {
     text-decoration: none;
-    color: var(--txt);
+    color: var(--branco);
 }
 
 .home {
     height: 100vh;
     max-height: 100%;
-    background-image: url('../assets/images/bg.png');
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .home__container {
@@ -72,6 +68,7 @@
     align-items: center;
     padding: 0vw 5vw;
     height: 80vh;
+    justify-content: space-evenly;
 }
 
 .home__title {
@@ -80,22 +77,71 @@
     font-weight: 700;
     font-size:  42pt;
     width: 50%;
-    color: var(--paragraph);
+    color: var(--branco);
     font-style: normal;
 }
 
 .home__title--color {
-    color: var(--textos-azulclaro);
+    color: var(--azul-claro);
 }
 
-.home-sobrenos {
+.home__bgasset {
+    width: 35vw;
+    height: auto;
+}
+
+.home__sobrenos {
     height: 100vh;
+    background-color: #3d5a80;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2em;
+    text-align: center;
+    position: relative;
+    overflow: hidden; 
 }
 
-.home-sobrenos__title {
+.home__sobrenos--title {
     font-family: "SUSE", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 700;
-    font-size:  42pt;
+    font-weight: 600;
+    font-size:  15pt;
+    color: var(--branco);
+    position: relative;
+    z-index: 1;
+}
+
+.home__sobrenos--txt {
+    font-family: "SUSE", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 800;
+    width: 70%;
+    font-size:  32pt;
+    color: #ecf6ff;
+    position: relative;
+    z-index: 1;
+}
+
+.home__sobrenos--WORKWAY {
+    position: absolute;
+    width: 60vw;
+    height: auto;
+    z-index: 0;
+}
+
+.home__planostitulo {
+    display: flex;
+    height: 50vh;
+    background-color: var(--cinza);
+}
+
+.home__planostitulo--txt {
+    font-family: "SUSE", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    width: 70%;
+    font-size: 30pt;
+    padding: 2em;
 }
