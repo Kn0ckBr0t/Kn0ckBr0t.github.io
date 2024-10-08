@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -116,9 +117,9 @@
 .home__sobrenos--txt {
     font-family: "SUSE", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 800;
+    font-weight: 700;
     width: 70%;
-    font-size:  32pt;
+    font-size:  30pt;
     color: #ecf6ff;
     position: relative;
     z-index: 1;
@@ -134,13 +135,13 @@
 .home__planostitulo {
     display: flex;
     height: 50vh;
-    background-color: var(--cinza);
+    background-color: #f0eeee;
 }
 
 .home__planostitulo--txt {
     font-family: "SUSE", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 800;
+    font-weight: 700;
     width: 70%;
     font-size: 30pt;
     padding: 2em;
