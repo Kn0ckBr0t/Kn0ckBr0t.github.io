@@ -7,6 +7,7 @@
 
 :root {
     --azul-claro: #3FA2F6;
+    --azul-geada: #90C5FC;
 }
 
 [data-theme="light"] {
@@ -15,7 +16,7 @@
 }
   
 [data-theme="dark"] {
-    --branco: #ffffff;
+    --branco: #000000;
     --cinza: #d1d1d1;
 }
 
@@ -83,7 +84,7 @@
 }
 
 .home__title--color {
-    color: var(--azul-claro);
+    color: var(--azul-geada);
 }
 
 .home__bgasset {
@@ -93,7 +94,7 @@
 
 .home__sobrenos {
     height: 100vh;
-    background-color: #3d5a80;
+    background-color: #755ab3;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -127,14 +128,15 @@
 
 .home__sobrenos--WORKWAY {
     position: absolute;
-    width: 60vw;
+    width: 50vw;
+    opacity: 0.4;
     height: auto;
     z-index: 0;
 }
 
 .home__planostitulo {
     display: flex;
-    height: 50vh;
+    height: 60vh;
     background-color: #f0eeee;
 }
 
@@ -145,4 +147,75 @@
     width: 70%;
     font-size: 30pt;
     padding: 2em;
+}
+
+.home__planos {
+    display: flex;
+    height: 60vh;
+    background-color: #f0eeee;
+    justify-content: space-around;
+    padding: 5em 10em;
+}
+
+.home__planos--img {
+    display: flex;
+    width: 20em;
+    height: auto;
+    align-self: start;
+}
+
+.home__planos--card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    width: 30vw;
+    height: 25vw;
+    justify-content: space-around;
+}
+
+.home__planos--card h1 {
+    font-family: "SUSE", sans-serif;
+    font-optical-sizing: auto;
+    color: #006989;
+    font-weight: 700;
+    font-size: 30pt;
+}
+
+.home__planos--card p {
+    font-family: "SUSE", sans-serif;
+    font-optical-sizing: auto;
+    color: #252525;
+    font-weight: 400;
+    font-size: 18pt;
+}
+
+.home__planos--card ul {
+    list-style: none;
+}
+
+.home__planos--card li {
+    font-family: "SUSE", sans-serif;
+    font-optical-sizing: auto;
+    color: #252525;
+    font-weight: 400;
+    font-size: 14pt;
+    line-height: 1.2em;
+}
+
+.home__planos--card button {
+    font-family: "SUSE", sans-serif;
+    font-optical-sizing: auto;
+    background-image: linear-gradient( 93.2deg,  #006989 14.4%, #034153 90.8% );
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    color: var(--branco);
+    font-weight: 400;
+    font-size: 16pt;
+    border: 0;
+    outline: 0;
+    width: 12em;
+    padding: 12px 30px;
+    cursor: pointer;
+    border-radius: 10px;
 }
