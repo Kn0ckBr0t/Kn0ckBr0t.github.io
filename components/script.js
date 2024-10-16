@@ -1,13 +1,30 @@
 gsap.registerPlugin(ScrollTrigger);
-gsap.from(".home__title", { duration: 2.5, opacity: 0, x: '-5%', ease: "expo.out" });
+gsap.from(".home__title", {
+  duration: 2.5,
+  opacity: 0,
+  x: "-5%",
+  ease: "expo.out",
+});
+
+gsap.to(".home__sobrenos", {
+  scrollTrigger: {
+    trigger: ".home__sobrenos",
+    pin: true,
+    start: "top top",
+    end: "+=500",
+    scrub: 2,
+  },
+});
 
 gsap.to(".home__sobrenos--WORKWAY", {
   scale: 1.5,
   ease: "expo.out",
   scrollTrigger: {
-    trigger: '.home__sobrenos--WORKWAY',
-    scrub: 1,
-  }
+    trigger: ".home__sobrenos--WORKWAY",
+    scrub: 1.5,
+    start: "top center",
+    end: "bottom top",
+  },
 });
 
 gsap.from(".home__planostitulo--txt", {
@@ -15,5 +32,62 @@ gsap.from(".home__planostitulo--txt", {
   opacity: 0,
   ease: "expo.out",
   duration: 1.5,
-  scrollTrigger: '.home__planostitulo--txt',
+  scrollTrigger: ".home__planostitulo--txt",
+});
+
+gsap.set(".card-1", { opacity: 1 });
+
+let tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".home__planos",
+    start: "top-=150 top",
+    endTrigger: ".home__escolha",
+    end: "+=300%",
+    scrub: true,
+    pin: true,
+  },
+});
+
+tl.to(".card-1", { opacity: 0, x: "6%", ease: "power2.inOut", duration: 2 })
+  .to(
+    ".card-2",
+    { opacity: 1, x: "0%", ease: "power2.inOut", duration: 1 },
+    "-=0.5"
+  )
+  .to(".card-2", { opacity: 0, x: "-6%", ease: "power2.out", duration: 2 })
+  .to(
+    ".card-3",
+    { opacity: 1, y: "0%", ease: "power2.inOut", duration: 1 },
+    "-=0.5"
+  );
+
+let lastScrollTop = 0;
+
+const header = document.querySelector(".header");
+
+ScrollTrigger.create({
+  start: 0,
+  end: document.body.scrollHeight,
+  onUpdate: (self) => {
+    const scrollTop = window.scrollY;
+
+    if (scrollTop > lastScrollTop) {
+      gsap.to(header, { y: -header.offsetHeight, opacity: 0, duration: 0.5 });
+    } else {
+      gsap.to(header, { y: 0, opacity: 1, ease: "sine.inOut", duration: 0.5 });
+    }
+
+    lastScrollTop = scrollTop;
+  },
+});
+
+new Typewriter(".home__title--color", {
+  strings: [
+    'Oportunidades',
+    'Esperança',
+    'Fortuna',
+    'Alegria',
+  ],
+  autoStart: true,
+  loop: true,
 });
