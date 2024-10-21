@@ -368,8 +368,24 @@ body {
 .home__feedbacks--container {
     display: flex;
     flex-direction: column;
+    gap: 1vw;
 }
 
 .home__feedbacks--container section {
-    
+    font-family: "SUSE", sans-serif;
+    font-optical-sizing: auto;
+    color: #002B2D;
+    font-weight: 400;
+    font-size: 12pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: italic;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    width: 35vw;
+    padding: 10px;
+    height: 4vw;
+    border-radius: 8px;
+    overflow: hidden;
 }
