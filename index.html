@@ -1,16 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-br" data-theme="light">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./components/home.css">
+    <link rel="stylesheet" href="./components/home/home.css">
     <link rel="shortcut icon" href="./assets/images/Logo_default/Icon.svg" type="image/x-icon">
     <link href="./assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
     <link href="./assets/fontawesome/css/brands.css" rel="stylesheet" />
     <link href="./assets/fontawesome/css/solid.css" rel="stylesheet" />
-    <title>WorkWay</title>
+    <title class="notranslate">WorkWay</title>
+    <script type="text/javascript" src="components/googletradutor.js"></script>
 </head>
-<body>
+<body id="google_translate_element">
+    <section id="preloader">
+        <h1>
+            <span class="preloader-1">W</span>
+            <span class="preloader-2">o</span>
+            <span class="preloader-3">r</span>
+            <span class="preloader-4">k</span>
+            <span class="preloader-5"></span>
+            <span class="preloader-6">W</span>
+            <span class="preloader-7">a</span>
+            <span class="preloader-8">y</span>
+        </h1>
+    </section>
     <section class="home">
         <header class="header">
             <ul>
@@ -30,9 +43,9 @@
                 </div>
                 <div class="header__align">
                     <li>
-                        <a href="#" style="color: #8d8c8ce3;" id="ENG">EN</a>
+                        <a href="#" id="translate_en" class="notranslate" style="color: #8d8c8ce3;" onclick="changeColor('en')">EN</a>
                         <a style="color: #8d8c8ce3;">|</a>
-                        <a href="#" style="color: #d1d1d1;" id="BR">BR</a>
+                        <a href="#" id="translate_br" class="notranslate" style="color: #d1d1d1;" onclick="changeColor('br')">BR</a>
                     </li>
                 </div>
                 <div class="header__align">
@@ -46,7 +59,7 @@
         </header>
         <main class="home__container">
             <h1 class="home__title">
-                Transforme incerteza <br> em um futuro cheio de <br><span class="home__title--color">Oportunidades</span>
+                Transforme incerteza <br> em um futuro cheio de <br><span class="home__title--color notranslate">Oportunidades</span>
             </h1>
             <img src="assets/images/HOME__BGASSET.svg" alt="Imagem da home" class="home__bgasset">
         </main>
@@ -81,7 +94,7 @@
                 <button>Selecionar</button>
             </div>
             <div class="card card-2">
-                <h1>Premium</h1>
+                <h1 class="notranslate">Premium</h1>
                 <p><b>15 R$</b></p>
                 <ul>
                     <li><i class="fa-solid fa-check" style="color: #63E6BE; margin-right: 10px;"></i>Ver artigos</li>
@@ -192,14 +205,14 @@
             <div class="footer__container--side1">
                 <a href="./"><img src="./assets/images/Logo_white/Logo.svg" alt="logo"></a>
                 <div style="display: flex; gap: 5vw;">
-                    <p>©2024 WorkWay</p>
-                    <a href="#">Cookies</a>
+                    <p class="notranslate">©2024 WorkWay</p>
+                    <a href="#" class="notranslate">Cookies</a>
                     <a href="#">Políticas de privacidade</a>
                 </div>
             </div>
         </section>
         <section class="footer__title">
-            <p>WORKWAY</p>
+            <p class="notranslate">WORKWAY</p>
         </section>
     </footer>
     <div vw class="enabled" style="overflow-x: visible;">
@@ -215,6 +228,6 @@
     <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="components/script.js"></script>
+    <script src="components/home/home.js"></script>
 </body>
 </html>

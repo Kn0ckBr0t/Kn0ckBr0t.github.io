@@ -26,6 +26,97 @@ body {
     --preto-puro: #000000;
 }
 
+.notranslate {
+    translate: no;
+}
+
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+    display: none;
+}
+
+.goog-te-gadget {
+    display: none;
+}
+
+.goog-te-banner-frame {
+    display:none !important
+}
+
+body {
+    top: 0px !important; 
+}
+
+#preloader {
+    background-image: linear-gradient(135deg, #002B2D 0%, #3FA2F6 100%, rgba(0, 0, 0, 0.5) 100%);
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#preloader h1 {
+    color: #fff;
+    font-family: "SUSE", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 10vw;
+    font-style: normal;
+    list-style: none;
+}
+
+@media only screen and (max-width: 1920px) {
+    .home__sobrenos--txt {
+        font-size: 30pt;
+    }
+
+    .home__planos--img {
+        align-self: start;
+    }
+}
+
+@media only screen and (max-width: 1500px) {
+    .home__planos--img {
+        align-self: start;
+    }
+
+    .home__planos {
+        gap: 10%;
+    }
+
+    .home__planos--card {
+        padding: 20% 15%;
+    }
+}
+
+@media only screen and (max-width: 860px) {
+    .home__planos {
+        align-items: center;
+        flex-direction: column;
+        gap: 10%;
+    }
+
+    .home__planos--img {
+        align-self: center;
+    }
+
+    .home__planos--card {
+        padding: 25% 45%;
+    }
+}
+
+@media only screen and (max-device-width : 720px) {
+    .home__sobrenos--txt {
+        font-size: 20px;
+    }
+
+    .home__planos--card {
+        padding: 20vh 15vh;
+    }
+}
+
 .header {
     overflow: hidden;
     position: fixed;
@@ -34,7 +125,8 @@ body {
     right: 0; 
     z-index: 1000;
     transition: transform 0.3s ease; 
-    height: 6.5em;
+    height: 6em;
+    padding: 1em;
     display: flex;
     align-items: center; 
     padding: 10px;
@@ -192,7 +284,6 @@ body {
     display: flex;
     width: 20em;
     height: auto;
-    align-self: start;
 }
 
 .home__planos--card {
@@ -205,6 +296,7 @@ body {
     height: 25vw;
     justify-content: space-around;
     overflow: hidden;
+    contain: paint;
 }
 
 .home__planos--card h1 {
@@ -347,7 +439,7 @@ body {
     align-items: center;
     justify-content: space-around;
     height: 70vh;
-    background-image: url('../assets/images/home__feedback.svg');
+    background-image: url('../../assets/images/home__feedback.svg');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -385,8 +477,8 @@ body {
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
     width: 35vw;
-    padding: 10px;
-    height: 4vw;
+    padding: 2%;
+    height: 20%;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -407,7 +499,7 @@ body {
     display: flex;
     height: 70%;
     width: 80%;
-    background-image: url('../assets/images/HOME__CONTATO.png');
+    background-image: url('../../assets/images/HOME__CONTATO.png');
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 20px;
