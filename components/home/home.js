@@ -22,7 +22,7 @@ var splash = document.getElementById('preloader');
 window.addEventListener("load", function() {
     const letters = document.querySelectorAll("#preloader h1 span");
 
-    gsap.from(letters, {
+    gsap.to(letters, {
         duration: 1,
         opacity: 0,
         y: 50,

@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: #f0eeee;
+}
+
+:root {
+    --azul-claro: #3FA2F6;
+    --azul-geada: #90C5FC;
+    --cinza: #d1d1d1;
+    --preto: #002B2D;
+    --verde-escuro: #006989;
+    --laranja-claro: #FBAB7E;
+    --laranja-geada: #F7CE68;
+    --azul-escuro: #034153;
+    --azul-claro-muito: #E0F7FA;
+    --cinza-escuro: #222222;
+    --preto-suave: #252525;
+    --branco: #ffffff;
+    --preto-puro: #000000;
+}
