@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./components/signup/signup.css">
+    <link rel="shortcut icon" href="./assets/images/Logo_default/Icon.svg" type="image/x-icon">
+    <link href="./assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="./assets/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="./assets/fontawesome/css/solid.css" rel="stylesheet" />
+    <title>SIGNUP</title>
+</head>
+<body>
+    <section class="signup__container">
+        <section class="signup__form">
+            <img src="./assets/images/Logo_default/Icon.svg" alt="Logo" class="signup__form--logo">
+            <form action="" method="POST" class="signup__form--form">
+                <label for="email" class="signup__form--label">Email</label>
+                <input type="email" name="email" id="email" class="signup__form--input" required>
+                <label for="password" class="signup__form--label">Senha</label>
+                <input type="password" name="password" id="password" class="signup__form--input" required>
+                <label for="rptpassword" class="signup__form--label">Repetir Senha</label>
+                <input type="password" name="rptpassword" id="rptpassword" class="signup__form--input" required>
+                <section class="signup__form--input-div">
+                    <section>
+                        <input type="checkbox" name="promo" id="promo" class="signup__form--terms">
+                        <label for="promo">Aceito receber promoções</label>
+                    </section>
+                    <section>
+                        <input type="checkbox" name="terms" id="terms" class="signup__form--terms" required>
+                        <label for="terms">Aceito os <a href="" id="terms-and-conditions">Termos e condições</a></label>
+                    </section>
+                </section>
+                <button type="submit" class="signup__form--button">Registrar</button>
+                <section class="signup__form--or">
+                    <hr>
+                    <span>ou</span>
+                    <hr>
+                </section>
+                <button type="submit" class="signup__form--google" id="google"><i class="fa-brands fa-google 2x"></i>Cadastrar com Google</button>
+                <p class="signup__form--signup">Já possui uma conta? <a href="/login">Entre</a></p>
+            </form>
+            <dialog class="signup__modal">
+                <article class="signup__modal--article">
+                    <h2 class="signup__modal--title">Termos e Condições</h2>
+                    <section class="signup__modal--content">
+                        <h3>1. Introdução</h3>
+                        <p>Bem-vindo ao nosso site. Se você continuar a navegar e usar este site, você está concordando em cumprir e ser regido pelos seguintes termos e condições de uso, que juntamente com nossa política de privacidade regem o relacionamento da nossa empresa com você em relação a este site.</p>
+                        <h3>2. Uso do Site</h3>
+                        <p>2.1. O conteúdo das páginas deste site é para sua informação geral e uso apenas. Ele está sujeito a alterações sem aviso prévio.</p>
+                        <p>2.2. Este site usa cookies para monitorar as preferências de navegação. Se você permitir o uso de cookies, as seguintes informações pessoais podem ser armazenadas por nós para uso por terceiros.</p>
+                        <h3>3. Privacidade</h3>
+                        <p>3.1. Nosso compromisso é garantir que sua privacidade esteja protegida. Solicitamos que você forneça certas informações pelas quais você pode ser identificado ao usar este site, então você pode ter certeza de que elas só serão usadas de acordo com esta declaração de privacidade.</p>
+                        <h3>4. Links para Outros Sites</h3>
+                        <p>4.1. Nosso site pode conter links para outros sites de interesse. No entanto, uma vez que você tenha usado esses links para sair do nosso site, você deve notar que não temos controle sobre esse outro site. Portanto, não podemos ser responsáveis pela proteção e privacidade de qualquer informação que você fornecer enquanto visita esses sites.</p>
+                        <h3>5. Alterações nos Termos</h3>
+                        <p>5.1. Podemos alterar estes termos de tempos em tempos atualizando esta página. Você deve verificar esta página periodicamente para garantir que está satisfeito com quaisquer alterações.</p>
+                        <h3>6. Lei Aplicável</h3>
+                        <p>6.1. O uso deste site e qualquer disputa decorrente desse uso do site está sujeito às leis do Brasil.</p>
+                        <h3>7. Coleta de Dados</h3>
+                        <p>7.1. Coletamos informações pessoais identificáveis, como nome, endereço de e-mail e outras informações relevantes para o propósito do nosso projeto.</p>
+                        <p>7.2. As informações coletadas são usadas para entender suas necessidades e fornecer um melhor serviço, em particular pelas seguintes razões:</p>
+                        <ul>
+                            <li>Manutenção de registros internos.</li>
+                            <li>Melhoria de nossos produtos e serviços.</li>
+                            <li>Envio periódico de e-mails promocionais sobre novos produtos, ofertas especiais ou outras informações que achamos que você pode achar interessante usando o endereço de e-mail que você forneceu.</li>
+                        </ul>
+                        <h3>8. Segurança</h3>
+                        <p>8.1. Estamos comprometidos em garantir que suas informações estejam seguras. Para evitar acesso não autorizado ou divulgação, implementamos procedimentos físicos, eletrônicos e administrativos adequados para proteger e proteger as informações que coletamos online.</p>
+                        <h3>9. Controle de suas Informações Pessoais</h3>
+                        <p>9.1. Você pode optar por restringir a coleta ou uso de suas informações pessoais das seguintes maneiras:</p>
+                        <ul>
+                            <li>Sempre que for solicitado que você preencha um formulário no site, procure a caixa que você pode clicar para indicar que não deseja que as informações sejam usadas por ninguém para fins de marketing direto.</li>
+                            <li>Se você já concordou em usar suas informações pessoais para fins de marketing direto, você pode mudar de ideia a qualquer momento, escrevendo ou enviando um e-mail para nós.</li>
+                        </ul>
+                        <h3>10. Direitos dos Usuários</h3>
+                        <p>10.1. Você tem o direito de solicitar detalhes das informações pessoais que mantemos sobre você sob a Lei de Proteção de Dados de 1998. Uma pequena taxa será paga. Se você gostaria de uma cópia das informações mantidas sobre você, por favor escreva para nosso endereço de contato.</p>
+                        <p>10.2. Se você acredita que qualquer informação que estamos mantendo sobre você está incorreta ou incompleta, por favor escreva ou envie um e-mail o mais rápido possível, no endereço acima. Corrigiremos prontamente qualquer informação encontrada incorreta.</p>
+                        <h3>11. Consentimento</h3>
+                        <p>11.1. Ao usar nosso site, você concorda com nossa política de privacidade.</p>
+                        <h3>12. Contato</h3>
+                        <p>12.1. Se você tiver alguma dúvida sobre esta política de privacidade, entre em contato conosco através do nosso e-mail de suporte.</p>
+                    </section>
+                <button class="signup__modal--close">Fechar</button>
+            </dialog>
+        </section>
+        <section class="signup__background">
+            <a href="/" class="signup__background--href"><i class="fa-solid fa-angle-left 2x" style="color: #74C0FC; display: block;"></i></a>
+            <img src="./assets/images/Login__Background.png" alt="Background" class="signup__background--image">
+        </section>
+    </section>
+    <div vw class="enabled" style="overflow-x: visible;">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="components/signup/signup.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+</body>
+</html>
