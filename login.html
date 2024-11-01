@@ -30,13 +30,13 @@
                     </section>
                     <a href="#" class="login__form--link">Esqueceu a senha?</a>
                 </section>
-                <button type="submit" class="login__form--button">Entrar</button>
+                <input type="submit" class="login__form--button" value="Entrar">
                 <section class="login__form--or">
                     <hr>
                     <span>ou</span>
                     <hr>
                 </section>
-                <button type="submit" class="login__form--google" id="google"><i class="fa-brands fa-google 2x"></i>Logar com Google</button>
+                <button class="login__form--google" id="google"><i class="fa-brands fa-google 2x"></i>Logar com Google</button>
                 <p class="login__form--signup">Não tem uma conta? <a href="/signup">Criar conta</a></p>
             </form>
         </section>
@@ -47,6 +47,8 @@
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
+    <script src="firebase/firebase.js" type="module"></script>
+    <script src="firebase/auth.js" type="module"></script>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
