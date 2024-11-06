@@ -19,30 +19,25 @@
     <section class="perfil__wrapper">
         <aside class="perfil__aside">
             <ul>
-                <section>
-                    <li><a id="dashboard"> Dashboard </a></li>
-                    <li><a id="perfil"> Perfil </a></li>
+                <section style="display: flex; flex-direction: column; gap: 10px;">
+                    <li><a id="menu_dashboard"><i class="fa-solid fa-chart-line" style="display: inline; margin: 2px 6px;"></i> Dashboard </a></li>
+                    <li><a id="menu_perfil"><i class="fa-solid fa-user" style="display: inline; margin: 2px 8px;"></i> Perfil </a></li>
                 </section>
-                <li><a id="sair"> Sair </a></li>
+                <section style="display: flex; flex-direction: column; gap: 10px;">
+                    <li><a id="delete"><i class="fa-solid fa-trash" style="display: inline; margin: 2px 10px;"></i> Excluir </a></li>
+                    <li><a id="sair"><i class="fa-solid fa-arrow-right-from-bracket" style="display: inline; margin: 2px 10px;"></i> Sair </a></li>
+                </section>
             </ul>
         </aside>
         <main class="perfil__container">
             <section id="dashboard">
-                <h1>Dashboard</h1>
-                <div class="perfil__container--dashboard">
-                    <div class="perfil__container--dashboard--card">
-                        <h2>Projetos</h2>
-                        <p>10</p>
-                    </div>
-                    <div class="perfil__container--dashboard--card">
-                        <h2>Projetos</h2>
-                        <p>10</p>
-                    </div>
-                    <div class="perfil__container--dashboard--card">
-                        <h2>Projetos</h2>
-                        <p>10</p>
-                    </div>
-                </div>
+                <h1 class="dashboard__title">Dashboard</h1>
+                <section class="dashboard__card">
+                    <p>Não há reúniões marcadas</p>
+                </section>
+            </section>
+            <section id="perfil">
+
             </section>
         </main>
     </section>

@@ -56,7 +56,7 @@ body {
 }
 
 .perfil__aside {
-    padding: 4% 0;
+    padding: 4% 2%;
     background: #fff;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -86,15 +86,55 @@ body {
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
+    transition: 80ms;
     list-style: none;
 }
 
 .perfil__aside ul li a:hover {
-    background-color: var(--cinza-escuro);
-    color: #fff;
+    color: var(--azul-escuro);
 }
 
 #sair:hover {
     background-color: transparent;
     color: #dd0000;
+}
+
+#delete:hover {
+    background-color: transparent;
+    color: #dd0000;
+}
+
+.perfil__container {
+    padding: 4% 5%;
+}
+
+.dashboard__title {
+    font-size: 2.5rem;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--preto-suave);
+    margin-bottom: 20px;
+}
+
+.dashboard__card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FBAB7E;
+    background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+    padding: 100px;
+    border-radius: 10px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+
+.dashboard__card p {
+    font-size: 1.2rem;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--branco);
 }

@@ -63,6 +63,15 @@ const signup = (event, email, password) => {
 };
 
 //LOGOUT
+
+const logoutButton = document.getElementById('sair');
+
+if (logoutButton) {
+    logoutButton.addEventListener('click', (event) => {
+        logout(event);
+    });
+}
+
 const logout = (event) => {
     event.preventDefault();
     signOut(auth)
@@ -77,6 +86,7 @@ const logout = (event) => {
 
 
 //SESSION
+
 onAuthStateChanged(auth, (user) => {
     if (user) {
         console.log('User is signed in:', user);

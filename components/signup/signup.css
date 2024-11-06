@@ -168,7 +168,6 @@ body {
     flex-direction: row;
     align-items: center;
     gap: 5px;
-    text-align: justify;
 }
 
 .signup__form--input-div section label {
