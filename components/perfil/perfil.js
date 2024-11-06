@@ -1,3 +1,8 @@
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('dashboard').style.display = 'block';
+    document.getElementById('perfil').style.display = 'none';
+});
+
 document.getElementById('menu_perfil').addEventListener('click', function() {
     gsap.to('#dashboard', { duration: 0.2, opacity: 0, onComplete: function() {
         document.getElementById('dashboard').style.display = 'none';

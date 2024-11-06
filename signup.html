@@ -16,18 +16,19 @@
             <img src="./assets/images/Logo_default/Icon.svg" alt="Logo" class="signup__form--logo">
             <form action="" method="POST" class="signup__form--form">
                 <label for="email" class="signup__form--label">Email</label>
-                <input type="email" name="email" id="email" class="signup__form--input" required>
+                <input type="email" name="email" id="email" class="signup__form--input">
                 <label for="password" class="signup__form--label">Senha</label>
-                <input type="password" name="password" id="password" class="signup__form--input" required>
+                <input type="password" name="password" id="password" class="signup__form--input">
                 <label for="rptpassword" class="signup__form--label">Repetir Senha</label>
-                <input type="password" name="rptpassword" id="rptpassword" class="signup__form--input" required>
+                <input type="password" name="rptpassword" id="rptpassword" class="signup__form--input">
+                <p class="signup__form--error"></p>
                 <section class="signup__form--input-div">
                     <section>
                         <input type="checkbox" name="promo" id="promo" class="signup__form--terms">
                         <label for="promo">Aceito receber promoções</label>
                     </section>
                     <section>
-                        <input type="checkbox" name="terms" id="terms" class="signup__form--terms" required>
+                        <input type="checkbox" name="terms" id="terms" class="signup__form--terms">
                         <label for="terms">Aceito os <a href="" id="terms-and-conditions">Termos e condições</a></label>
                     </section>
                 </section>
