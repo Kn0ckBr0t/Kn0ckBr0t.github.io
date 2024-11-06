@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./components/perfil/perfil.css">
+    <link rel="shortcut icon" href="./assets/images/Logo_default/Icon.svg" type="image/x-icon">
+    <link href="./assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="./assets/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="./assets/fontawesome/css/solid.css" rel="stylesheet" />
+    <title>PERFIL</title>
+</head>
+<body>
+    <header  class="perfil__header">
+        <a href="index.html">
+            <img src="./assets/images/Logo_default/Logo.svg" alt="Logo" class="perfil__header--image">
+        </a>
+    </header>
+    <section class="perfil__wrapper">
+        <aside class="perfil__aside">
+            <ul>
+                <section>
+                    <li><a id="dashboard"> Dashboard </a></li>
+                    <li><a id="perfil"> Perfil </a></li>
+                </section>
+                <li><a id="sair"> Sair </a></li>
+            </ul>
+        </aside>
+        <main class="perfil__container">
+            <section id="dashboard">
+                <h1>Dashboard</h1>
+                <div class="perfil__container--dashboard">
+                    <div class="perfil__container--dashboard--card">
+                        <h2>Projetos</h2>
+                        <p>10</p>
+                    </div>
+                    <div class="perfil__container--dashboard--card">
+                        <h2>Projetos</h2>
+                        <p>10</p>
+                    </div>
+                    <div class="perfil__container--dashboard--card">
+                        <h2>Projetos</h2>
+                        <p>10</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </section>
+    <div vw class="enabled" style="overflow-x: visible;">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="firebase/firebase.js" type="module"></script>
+    <script src="firebase/auth.js" type="module"></script>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="components/perfil/perfil.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+</body>
+</html>
