@@ -18,7 +18,7 @@ const login = (event, email, password) => {
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             console.log('User signed in:', userCredential.user);
-            window.location.href = 'index.html';
+            window.location.href = 'index';
         })
         .catch((error) => {
             const errormessage = document.querySelector('.login__form--error');
@@ -60,7 +60,7 @@ const signup = (event, email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             console.log('User signed up:', userCredential.user);
-            window.location.href = 'login.html';
+            window.location.href = 'login';
         })
         .catch((error) => {
             const errorMessage = document.querySelector('.signup__form--error');
@@ -84,7 +84,7 @@ const logout = (event) => {
     signOut(auth)
         .then(() => {
             console.log('User signed out');
-            window.location.href = 'login.html';
+            window.location.href = 'login';
         })
         .catch((error) => {
             console.error('Error signing out:', error);
@@ -100,9 +100,9 @@ onAuthStateChanged(auth, (user) => {
         document.getElementById('user-email').textContent = user.email;
         console.log('User is signed in:', user);
     } else {
-        const profilePage = window.location.pathname.endsWith('perfil.html');
+        const profilePage = window.location.pathname.endsWith('perfil');
         if (profilePage) {
-            window.location.href = 'login.html';
+            window.location.href = 'login';
         }
         console.log('No user is signed in');
     }
@@ -128,7 +128,7 @@ const deleteAccount = (event) => {
         user.delete()
             .then(() => {
                 console.log('User account deleted');
-                window.location.href = 'signup.html';
+                window.location.href = 'signup';
             })
             .catch((error) => {
                 console.error('Error deleting account:', error);
