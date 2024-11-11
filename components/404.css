@@ -95,6 +95,21 @@ body {
     opacity: 0.65;
 }
 
+.header__photo {
+    width: 3vw;
+    height: 3vw;
+    margin-right: 1vw;
+    cursor: pointer;
+    border: 2px solid var(--cinza);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header__photo:hover {
+    opacity: 0.8;
+}
+
 .header__align {
     display: flex;
     gap: 3vw;

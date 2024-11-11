@@ -12,7 +12,7 @@
 </head>
 <body>
     <header  class="perfil__header">
-        <a href="index.html">
+        <a href="/">
             <img src="./assets/images/Logo_default/Logo.svg" alt="Logo" class="perfil__header--image">
         </a>
     </header>
@@ -22,6 +22,7 @@
                 <section class="perfil__aside--ulicons">
                     <li><a id="menu_dashboard"><i class="fa-solid fa-chart-line" style="display: inline; max-width: 50px;"></i> <p>Dashboard</p> </a></li>
                     <li><a id="menu_perfil"><i class="fa-solid fa-user" style="display: inline; max-width: 50px;"></i> <p>Perfil</p> </a></li>
+                    <li><a id="menu_planos"><i class="fa-solid fa-wallet" style="display: inline; max-width: 50px;"></i> <p>Planos</p> </a></li>
                 </section>
                 <section class="perfil__aside--ulicons">
                     <li> <a id="delete"><i class="fa-solid fa-trash" style="display: inline; max-width: 50px;"></i> <p>Excluir</p> </a></li>
@@ -46,13 +47,48 @@
                                 <img src="" alt="Perfil" class="user__card--image" style="cursor: pointer;">
                             </label>
                         </figure>
-                        <label class="user__form--inputslabel">Mudar foto</label>
+                        <label class="user__form--inputslabel">Email: </label>
+                        <span id="user-email"></span>
+                        <label class="user__form--inputslabel" style="margin-top: 15px;">Alterar foto</label>
                         <input type="url" class="user__form--url" name="user__form--url" id="user__form--url" placeholder="URL de sua foto">
                         <label class="user__form--inputslabel">Nome</label>
                         <span id="user-name"></span>
-                        <label class="user__form--inputslabel">Email: </label>
-                        <span id="user-email"></span>
                     </form>
+                </section>
+            </section>
+            <section id="planos">
+                <h1 class="planos__title">Planos</h1>
+                <section class="planos">
+                    <section class="planos__container">
+                        <p id="current-plan">Seu plano atualmente é o <a href="/#planos">gratuito</a></p>
+                    </section>
+                    <section class="planos__selecionar">
+                        <form action="" method="get">
+                            <label for="planos__selecionar--select">Selecione um plano</label>
+                            <select name="planos__selecionar--select" id="planos__selecionar--select">
+                                <option value="Premium">Premium</option>
+                                <option value="Empresas">Empresas</option>
+                            </select>
+                            <label for="planos__selecionar--select">Forma de pagamento</label>
+                            <select name="planos__selecionar--select" id="planos__selecionar--select">
+                                <option value="pix">Pix</option>
+                            </select>
+                            <button id="planos_pay" class="planos__selecionar--button">Gerar pix</button>
+                        </form>
+                    </section>
+                </section>
+                <section class="planos-show">
+                    <section class="planos__pay">
+                        <h1><i class="fa-brands fa-pix" style="color: #3cb8ce; margin-right: 10px;"></i>Pix</h1>
+                        <section class="planos__pay--wrapper">
+                            <div>
+                                <p id="valor">Valor:</p>
+                                <p id="beneficio">Benefício:</p>
+                                <input type="text" id="copy-pix" class="planos__pay--copiaecola" value="pix" readonly>
+                            </div>
+                            <p id="pix-qrcode"></p>
+                        </section>
+                    </section>
                 </section>
             </section>
         </main>
@@ -63,7 +99,9 @@
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
+    <script src="node_modules/faz-um-pix/lib/browser/faz-um-pix.min.js"></script>
     <script src="firebase/firebase.js" type="module"></script>
+    <script src="firebase/firestore.js" type="module"></script>
     <script src="firebase/auth.js" type="module"></script>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>

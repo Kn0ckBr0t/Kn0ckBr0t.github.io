@@ -108,14 +108,22 @@ const logout = (event) => {
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
+        const loginOrProfileLink = document.getElementById('login-or-profile');
         const userNameElement = document.getElementById('user-name');
         const userEmailElement = document.getElementById('user-email');
         const userImageElement = document.querySelector('.user__card--image');
+
+        if (loginOrProfileLink) {
+            const photoURL = user.photoURL || 'https://imagedelivery.net/xE-VtsYZUS2Y8MtLMcbXAg/4f009d8cce14a403163a/sm';
+            const photoName = user.displayName || 'Nome não disponível';
+            loginOrProfileLink.innerHTML = '<a href="perfil"><img src="' + photoURL + '" alt="' + photoName + '" class="header__photo"></a>';
+        }
 
         if (userNameElement) {
             userNameElement.textContent = user.displayName || 'Nome não disponível';
             const userNameInput = document.createElement('input');
             userNameInput.type = 'text';
+            userNameInput.value = user.displayName || 'Nome não disponível';
             userNameInput.placeholder = user.displayName || 'Nome não disponível';
             userNameInput.id = 'user-name-input';
             userNameElement.replaceWith(userNameInput);
@@ -167,6 +175,10 @@ onAuthStateChanged(auth, (user) => {
 
         console.log('User is signed in:', user);
     } else {
+        const loginOrProfileLink = document.getElementById('login-or-profile');
+        if (loginOrProfileLink) {
+            loginOrProfileLink.innerHTML = '<a href="login"><i class="fa-solid fa-user fa-2x"></i></a>';
+        }
         const profilePage = window.location.pathname.endsWith('perfil') || window.location.pathname.endsWith('perfil.html');
         if (profilePage) {
             window.location.href = 'login';
