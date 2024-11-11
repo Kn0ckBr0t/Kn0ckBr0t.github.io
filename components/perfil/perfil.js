@@ -38,10 +38,10 @@ document.getElementById('planos_pay').addEventListener('click', async function(e
     const planosShow = document.querySelector('.planos-show');
     const valor = selectedPlan === 'Premium' ? '15.00' : '50.00';
     const beneficio = selectedPlan === 'Premium' ? 'Premium' : 'Empresas';
-
+    
     try {
-        const code = await _pix.Pix("53859584847", "PEDRO HENRIQUE BISPO FERREIRA", "SAO PAULO", valor, "Upgrade de plano para " + beneficio, true);
-        const codecola = await _pix.Pix("53859584847", "PEDRO HENRIQUE BISPO FERREIRA", "SAO PAULO", valor, "Upgrade de plano para " + beneficio);
+        const code = await window._pix.Pix("53859584847", "PEDRO HENRIQUE BISPO FERREIRA", "SAO PAULO", valor, "Upgrade de plano para " + beneficio, true);
+        const codecola = await window._pix.Pix("53859584847", "PEDRO HENRIQUE BISPO FERREIRA", "SAO PAULO", valor, "Upgrade de plano para " + beneficio);
 
         planosShow.querySelector('#valor').textContent = `Valor: R$ ${valor}`;
         planosShow.querySelector('#beneficio').textContent = `Benefício: ${beneficio}`;
