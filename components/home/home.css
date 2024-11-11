@@ -87,6 +87,11 @@ body {
         gap: 10%;
     }
 
+    .home__planos--card a{
+        text-decoration: none;
+        width: 100%;
+    }
+
     .home__planos--card {
         padding: 20% 15%;
     }
@@ -432,6 +437,12 @@ body {
     font-weight: 400;
     padding: 5px;
     font-size: 12pt;
+}
+
+.home__escolha--card a {
+    text-decoration: none;
+    color: #002B2D;
+    width: 100%;
 }
 
 .home__escolha--card button {
