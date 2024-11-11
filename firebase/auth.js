@@ -1,5 +1,6 @@
 import { auth } from './firebase.js';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
+import { updateProfile } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
 
 //LOGIN
 
@@ -18,7 +19,7 @@ const login = (event, email, password) => {
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             console.log('User signed in:', userCredential.user);
-            window.location.href = 'index';
+            window.location.href = '/';
         })
         .catch((error) => {
             const errormessage = document.querySelector('.login__form--error');
@@ -59,8 +60,19 @@ if (signupForm) {
 const signup = (event, email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            console.log('User signed up:', userCredential.user);
-            window.location.href = 'login';
+            const user = userCredential.user;
+            const displayName = email.split('@')[0] + Math.floor(Math.random() * 1000);
+            const photoURL = 'https://imagedelivery.net/xE-VtsYZUS2Y8MtLMcbXAg/4f009d8cce14a403163a/sm';
+
+            updateProfile(user, {
+                displayName: displayName,
+                photoURL: photoURL
+            }).then(() => {
+                console.log('User signed up:', userCredential.user);
+                window.location.href = '/';
+            }).catch((error) => {
+                console.error('Error updating profile:', error);
+            });
         })
         .catch((error) => {
             const errorMessage = document.querySelector('.signup__form--error');
@@ -96,11 +108,66 @@ const logout = (event) => {
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        document.getElementById('user-name').textContent = user.displayName || 'Nome não disponível';
-        document.getElementById('user-email').textContent = user.email;
+        const userNameElement = document.getElementById('user-name');
+        const userEmailElement = document.getElementById('user-email');
+        const userImageElement = document.querySelector('.user__card--image');
+
+        if (userNameElement) {
+            userNameElement.textContent = user.displayName || 'Nome não disponível';
+            const userNameInput = document.createElement('input');
+            userNameInput.type = 'text';
+            userNameInput.placeholder = user.displayName || 'Nome não disponível';
+            userNameInput.id = 'user-name-input';
+            userNameElement.replaceWith(userNameInput);
+            const updateButton = document.createElement('button');
+            updateButton.id = 'user-input';
+            updateButton.innerHTML = 'Alterar nome <i class="fa-solid fa-user-check" style="display: inline; margin: 2px 6px; cursor: pointer;"></i>';
+            userNameInput.insertAdjacentElement('afterend', updateButton);
+
+            updateButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                const newName = userNameInput.value;
+                updateProfile(user, { displayName: newName })
+                    .then(() => {
+                        console.log('User name updated to:', newName);
+                        window.location.reload();
+                    })
+                    .catch((error) => {
+                        console.error('Error updating user name:', error);
+                    });
+            });
+        }
+
+        if (userEmailElement) {
+            userEmailElement.textContent = user.email;
+        }
+
+        if (userImageElement) {
+            userImageElement.src = user.photoURL || 'https://imagedelivery.net/xE-VtsYZUS2Y8MtLMcbXAg/4f009d8cce14a403163a/sm';
+            const userImageInput = document.getElementById('user__form--url');
+            userImageInput.placeholder = 'URL da imagem';
+            const updateImageButton = document.createElement('button');
+            updateImageButton.id = 'user-url-input';
+            updateImageButton.innerHTML = 'Alterar imagem <i class="fa-solid fa-user-check" style="display: inline; margin: 2px 6px; cursor: pointer;"></i>';
+            userImageInput.insertAdjacentElement('afterend', updateImageButton);
+
+            updateImageButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            const newPhotoURL = userImageInput.value;
+            updateProfile(user, { photoURL: newPhotoURL })
+                .then(() => {
+                console.log('User photo URL updated to:', newPhotoURL);
+                window.location.reload();
+                })
+                .catch((error) => {
+                console.error('Error updating user photo URL:', error);
+                });
+            });
+        }
+
         console.log('User is signed in:', user);
     } else {
-        const profilePage = window.location.pathname.endsWith('perfil');
+        const profilePage = window.location.pathname.endsWith('perfil') || window.location.pathname.endsWith('perfil.html');
         if (profilePage) {
             window.location.href = 'login';
         }
