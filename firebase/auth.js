@@ -1,9 +1,8 @@
 import { auth } from './firebase.js';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, setPersistence, browserLocalPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
 import { updateProfile } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
 
 //LOGIN
-
 const loginForm = document.querySelector('.login__form--form');
 
 if (loginForm) {
@@ -11,24 +10,28 @@ if (loginForm) {
         event.preventDefault();
         const email = loginForm.querySelector('input[name="email"]').value;
         const password = loginForm.querySelector('input[name="password"]').value;
-        login(event, email, password);
+        const rememberMe = loginForm.querySelector('input[name="remember"]').checked;
+        login(event, email, password, rememberMe);
     });
 }
 
-const login = (event, email, password) => {
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            console.log('User signed in:', userCredential.user);
+const login = (event, email, password, rememberMe) => {
+    const persistence = rememberMe ? browserLocalPersistence : browserSessionPersistence;
+    setPersistence(auth, persistence)
+        .then(() => {
+            return signInWithEmailAndPassword(auth, email, password);
+        })
+        .then(() => {
             window.location.href = '/';
         })
-        .catch((error) => {
+        .catch(() => {
             const errormessage = document.querySelector('.login__form--error');
-            document.querySelector('.login__form--error').style.display = 'block';
+            errormessage.style.display = 'block';
+            errormessage.textContent = 'Usuário ou senha inválidos';
         });
 };
 
 //SIGNUP
-
 const signupForm = document.querySelector('.signup__form--form');
 
 if (signupForm) {
@@ -49,37 +52,21 @@ if (signupForm) {
         if (!promoCheckbox.checked) {
             const errorMessage = document.querySelector('.signup__form--error');
             errorMessage.style.display = 'block';
-            errorMessage.textContent = 'Aceite os termos de uso';
+            errorMessage.textContent = 'Você deve aceitar os termos e condições';
             return;
         }
-        
-        signup(event, email, password);
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then(() => {
+                window.location.href = '/';
+            })
+            .catch(() => {
+                const errorMessage = document.querySelector('.signup__form--error');
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'Erro ao cadastrar usuário';
+            });
     });
 }
-
-const signup = (event, email, password) => {
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            const displayName = email.split('@')[0] + Math.floor(Math.random() * 1000);
-            const photoURL = 'https://imagedelivery.net/xE-VtsYZUS2Y8MtLMcbXAg/4f009d8cce14a403163a/sm';
-
-            updateProfile(user, {
-                displayName: displayName,
-                photoURL: photoURL
-            }).then(() => {
-                console.log('User signed up:', userCredential.user);
-                window.location.href = '/';
-            }).catch((error) => {
-                console.error('Error updating profile:', error);
-            });
-        })
-        .catch((error) => {
-            const errorMessage = document.querySelector('.signup__form--error');
-            errorMessage.style.display = 'block';
-            errorMessage.textContent = 'Email já cadastrado';
-        });
-};
 
 //LOGOUT
 
@@ -95,17 +82,12 @@ const logout = (event) => {
     event.preventDefault();
     signOut(auth)
         .then(() => {
-            console.log('User signed out');
             window.location.href = 'login';
-        })
-        .catch((error) => {
-            console.error('Error signing out:', error);
         });
 };
 
 
 //SESSION
-
 onAuthStateChanged(auth, (user) => {
     if (user) {
         const loginOrProfileLink = document.getElementById('login-or-profile');
@@ -137,11 +119,7 @@ onAuthStateChanged(auth, (user) => {
                 const newName = userNameInput.value;
                 updateProfile(user, { displayName: newName })
                     .then(() => {
-                        console.log('User name updated to:', newName);
                         window.location.reload();
-                    })
-                    .catch((error) => {
-                        console.error('Error updating user name:', error);
                     });
             });
         }
@@ -164,33 +142,25 @@ onAuthStateChanged(auth, (user) => {
             const newPhotoURL = userImageInput.value;
             updateProfile(user, { photoURL: newPhotoURL })
                 .then(() => {
-                console.log('User photo URL updated to:', newPhotoURL);
                 window.location.reload();
-                })
-                .catch((error) => {
-                console.error('Error updating user photo URL:', error);
                 });
             });
         }
-
-        console.log('User is signed in:', user);
     } else {
         const loginOrProfileLink = document.getElementById('login-or-profile');
         if (loginOrProfileLink) {
             loginOrProfileLink.innerHTML = '<a href="login"><i class="fa-solid fa-user fa-2x"></i></a>';
         }
-        const profilePage = window.location.pathname.endsWith('perfil') || window.location.pathname.endsWith('perfil.html');
+        const profilePage = window.location.pathname.endsWith('perfil') || window.location.pathname.endsWith('perfil.html') || window.location.pathname.endsWith('orientador') || window.location.pathname.endsWith('orientador.html');
         if (profilePage) {
             window.location.href = 'login';
         }
-        console.log('No user is signed in');
     }
 });
 
 export { login, logout };
 
 // DELETE
-
 const deleteButton = document.getElementById('delete');
 
 if (deleteButton) {
@@ -206,13 +176,19 @@ const deleteAccount = (event) => {
     if (user) {
         user.delete()
             .then(() => {
-                console.log('User account deleted');
                 window.location.href = 'signup';
-            })
-            .catch((error) => {
-                console.error('Error deleting account:', error);
             });
-    } else {
-        console.error('No user is signed in');
     }
 };
+
+// GOOGLE
+const googleLogin = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+        .then(() => {
+            window.location.href = 'perfil';
+        });
+    
+};
+
+document.getElementById('google').addEventListener('click', googleLogin);

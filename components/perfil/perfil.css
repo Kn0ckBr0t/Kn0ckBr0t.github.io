@@ -194,6 +194,62 @@ body {
     margin-bottom: 20px;
 }
 
+.meeting__title {
+    margin-top: 15px;
+    font-size: 2.5rem;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--preto-suave);
+    margin-bottom: 20px;
+}
+
+.orientador__card {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+    padding: 100px;
+    border-radius: 10px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+
+.orientador__card button {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    padding: 10px 20px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-family: "Inter", serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+        background-color: var(--azul-claro);
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(1);
+    }
+}
+
+.orientador__container {
+    gap: 40px;
+    display: flex;
+    width: 100%;
+}
+
+.orientador__container div {
+    width: 100%;
+}
+
 .user__card {
     display: flex;
     gap: 1.5rem;
