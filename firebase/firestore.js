@@ -58,6 +58,13 @@ const displayCurrentPlan = async () => {
                 }
             } else {
                 console.log('Nenhum plano encontrado para o usuário');
+                const currentUrl = window.location.pathname;
+                const restrictedPages = ['/orientador', '/orientador.html', '/orientadores', '/orientadores.html'];
+
+                if (restrictedPages.includes(currentUrl)) {
+                    alert('Você precisa ter um plano para acessar esta página.');
+                    window.location.href = '/perfil';
+                }
             }
         } catch (e) {
             console.error('Erro ao buscar plano: ', e);
@@ -142,7 +149,9 @@ function getRandomBackground() {
 }
 
 function displayOrientadores(orientadores) {
-    orientadorContainer.innerHTML = '';
+    if (orientadorContainer) {
+        orientadorContainer.innerHTML = '';
+    }
     orientadores.forEach(orientador => {
         const orientadorElement = document.createElement('section');
         orientadorElement.classList.add('orientador__item');
@@ -162,7 +171,16 @@ function displayOrientadores(orientadores) {
                 <button class="orientador__button">Contratar</button>
             </div>
         `;
-        orientadorContainer.appendChild(orientadorElement);
+        if (orientadorContainer) {
+            orientadorContainer.appendChild(orientadorElement);
+        } else {
+            console.error('orientadorContainer is null');
+        }
+
+        const button = orientadorElement.querySelector('.orientador__button');
+        button.addEventListener('click', () => {
+            window.alert('Uma reunião será marcada, fique atento ao seu email. Caso você não tenha disponibilidade, você pode remarcar.');
+        });
     });
 }
 

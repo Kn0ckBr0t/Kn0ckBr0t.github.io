@@ -191,4 +191,7 @@ const googleLogin = () => {
     
 };
 
-document.getElementById('google').addEventListener('click', googleLogin);
+const googleButton = document.getElementById('google');
+if (googleButton) {
+    googleButton.addEventListener('click', googleLogin);
+}
