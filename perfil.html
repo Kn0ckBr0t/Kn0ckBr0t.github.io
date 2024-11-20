@@ -11,14 +11,12 @@
     <title>PERFIL</title>
 </head>
 <body>
-    <header  class="perfil__header">
-        <a href="/">
-            <img src="./assets/images/Logo_default/Logo.svg" alt="Logo" class="perfil__header--image">
-        </a>
-    </header>
     <section class="perfil__wrapper">
         <aside class="perfil__aside">
             <ul>
+                <a href="/" style="text-align: center;">
+                    <img src="./assets/images/Logo_default/Logo.svg" alt="Logo" class="perfil__header--image">
+                </a>
                 <section class="perfil__aside--ulicons">
                     <li><a id="menu_dashboard"><i class="fa-solid fa-chart-line" style="display: inline; max-width: 50px;"></i> <p>Dashboard</p> </a></li>
                     <li><a id="menu_perfil"><i class="fa-solid fa-user" style="display: inline; max-width: 50px;"></i> <p>Perfil</p> </a></li>
@@ -47,12 +45,12 @@
                                 <img src="" alt="Perfil" class="user__card--image" style="cursor: pointer;">
                             </label>
                         </figure>
-                        <label class="user__form--inputslabel">Email: </label>
-                        <span id="user-email"></span>
-                        <label class="user__form--inputslabel" style="margin-top: 15px;">Alterar foto</label>
-                        <input type="url" class="user__form--url" name="user__form--url" id="user__form--url" placeholder="URL de sua foto">
                         <label class="user__form--inputslabel">Nome</label>
                         <span id="user-name"></span>
+                        <label class="user__form--inputslabel">Email: </label>
+                        <span id="user-email"></span>
+                        <!--<label class="user__form--inputslabel" style="margin-top: 15px;">Alterar foto</label>
+                        <input type="url" class="user__form--url" name="user__form--url" id="user__form--url" placeholder="URL de sua foto">-->
                     </form>
                 </section>
             </section>

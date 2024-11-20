@@ -68,61 +68,6 @@ body {
     list-style: none;
 }
 
-@media only screen and (max-width: 1920px) {
-    .home__sobrenos--txt {
-        font-size: 30pt;
-    }
-
-    .home__planos--img {
-        align-self: start;
-    }
-}
-
-@media only screen and (max-width: 1500px) {
-    .home__planos--img {
-        align-self: start;
-    }
-
-    .home__planos {
-        gap: 10%;
-    }
-
-    .home__planos--card a{
-        text-decoration: none;
-        width: 100%;
-    }
-
-    .home__planos--card {
-        padding: 20% 15%;
-    }
-}
-
-@media only screen and (max-width: 860px) {
-    .home__planos {
-        align-items: center;
-        flex-direction: column;
-        gap: 10%;
-    }
-
-    .home__planos--img {
-        align-self: center;
-    }
-
-    .home__planos--card {
-        padding: 25% 45%;
-    }
-}
-
-@media only screen and (max-device-width : 720px) {
-    .home__sobrenos--txt {
-        font-size: 20px;
-    }
-
-    .home__planos--card {
-        padding: 20vh 15vh;
-    }
-}
-
 .header {
     overflow: hidden;
     position: fixed;

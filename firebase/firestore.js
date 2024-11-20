@@ -10,7 +10,7 @@ if (planosPayButton) {
         event.preventDefault();
         setTimeout(() => {
             addOrUpdatePlanData();
-        }, 5000);
+        }, 1);
     });
 }
 

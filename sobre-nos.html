@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./components/sobre-nos/sobre-nos.css">
+    <link rel="shortcut icon" href="./assets/images/Logo_default/Icon.svg" type="image/x-icon">
+    <link href="./assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="./assets/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="./assets/fontawesome/css/solid.css" rel="stylesheet" />
+    <title class="notranslate">Sobre nós</title>
+    <script type="text/javascript" src="components/googletradutor.js"></script>
+</head>
+<body id="google_translate_element">
+    <header class="header">
+        <ul>
+            <li>
+                <a href="./"><img src="./assets/images/Logo_default/Logo.svg" alt="logo" class="header__image"></a>
+            </li>
+            <div class="header__align">
+                <li>
+                    <a href="#">Quero começar</a>
+                </li>
+                <li>
+                    <a href="orientadores">Orientadores</a>
+                </li>
+                <li>
+                    <a href="#">Sobre Nós</a>
+                </li>
+            </div>
+            <div class="header__align">
+                <li>
+                    <a href="#" id="translate_en" class="notranslate" style="color: #8d8c8ce3;" onclick="changeColor('en')">EN</a>
+                    <a style="color: #8d8c8ce3;">|</a>
+                    <a href="#" id="translate_br" class="notranslate" style="color: #d1d1d1;" onclick="changeColor('br')">BR</a>
+                </li>
+            </div>
+            <div class="header__align">
+                <li>
+                    <span id="login-or-profile"></span> 
+                </li>
+            </div>
+        </ul>
+    </header>
+    <section>
+
+    </section>
+    <div vw class="enabled" style="overflow-x: visible;">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+    <script src="firebase/firebase.js" type="module"></script>
+    <script src="firebase/firestore.js" type="module"></script>
+    <script src="firebase/auth.js" type="module"></script>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="components/sobre-nos/sobre-nos.js"></script>
+</body>
+</html>

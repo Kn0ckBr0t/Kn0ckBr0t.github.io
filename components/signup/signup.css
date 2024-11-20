@@ -313,9 +313,7 @@ body {
     font-family: "Inter", serif;
     overflow-y: scroll;
     text-align: left;
-    background-color: #f1ffff;
     max-height: 300px;
-    border: 1px solid var(--preto);
     font-optical-sizing: auto;
     padding: 10px;
     border-radius: 5px;

@@ -109,6 +109,7 @@ body {
 .header__align {
     display: flex;
     gap: 3vw;
+    flex-wrap: wrap;
 }
 
 .header a {
@@ -127,17 +128,19 @@ body {
     justify-content: center;
     align-items: center;
     padding: 5em;
+    height: auto;
+    margin-bottom: 50vh;
+    text-align: center;
 }
 
 .privacy-and-cookies h1 {
     font-family: "SUSE", sans-serif;
-    width: 36%;
+    width: 100%;
     font-optical-sizing: auto;
     font-weight: 800;
     font-size:  3.5em;
     font-style: normal;
     color: var(--azul-escuro);
-    margin-bottom: 0.8em;
 }
 
 .privacy-and-cookies p {
@@ -149,4 +152,88 @@ body {
     font-style: normal;
     color: var(--azul-escuro);
     margin-bottom: 1em;
+}
+
+@media (max-width: 768px) {
+    .header__photo {
+        width: 6vw;
+        height: 6vw;
+    }
+
+    .header__align {
+        gap: 2vw;
+    }
+
+    .privacy-and-cookies {
+        padding: 2em;
+    }
+
+    .privacy-and-cookies h1 {
+        font-size: 2.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .header__photo {
+        width: 10vw;
+        height: 10vw;
+    }
+
+    .header__align {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .privacy-and-cookies {
+        padding: 1em;
+    }
+
+    .privacy-and-cookies h1 {
+        font-size: 2em;
+    }
+}
+
+.lgpd {
+    background-color: #f0eeee;
+    background-image: url(../../assets/images/bodyphone.png);
+    background-size: 16%;	
+    background-repeat: no-repeat;
+    background-position: center right 15%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lgpd__container {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.lgpd__container p {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 1.6em;
+    font-style: normal;
+    color: var(--azul-escuro);
+    margin-bottom: 1em;
+}
+
+#Cookies__dropdown,
+#Privacy__dropdown,
+#Dados__dropdown {
+    text-align: justify;
+    display: none;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-size: 1em;
+    color: var(--cinza-escuro);
+    max-width: 80%;
+    display: flex;
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
 }

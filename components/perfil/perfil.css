@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: #f0eeee;
+    background-color: var(--azul-escuro);
     top: 0px !important; 
     font-family: 'Inter', sans-serif;
     height: 100vh;
@@ -31,49 +31,32 @@ body {
 }
 
 @media (max-width: 768px) {
-    .perfil__header {
+    .perfil__wrapper {
         flex-direction: column;
-        align-items: flex-start;
     }
 
     .perfil__aside {
-        flex: 1 1 100%;
-        max-width: none;
+        width: 100%;
     }
 
     .perfil__container {
-        flex: 1 1 100%;
+        width: 100%;
     }
 
-    .user__card {
-        padding: 1.5rem;
-        gap: 1rem;
+    .planos__container {
+        flex-direction: column;
     }
 }
 
 @media (max-width: 480px) {
-    .perfil__header {
-        padding: 1rem;
-    }
-
     .user__card {
         padding: 1rem;
         gap: 0.5rem;
     }
 }
 
-.perfil__header {
-    background-color: var(--branco);
-    padding: 1.25rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--branco);
-}
-
 .perfil__header--image {
-    width: 30%;
-    height: auto;
+    
     transition: 80ms;
 }
 
@@ -92,9 +75,8 @@ body {
 
 .perfil__aside {
     padding: 2%;
-    height: calc(100vh - 80px);
-    background: #fff;
-    max-width: 300px;
+    height: 100vh;
+    background: var(--azul-escuro);
 }
 
 .perfil__aside ul {
@@ -115,8 +97,8 @@ body {
     display: flex;
     justify-content: space-between;
     text-decoration: none;
-    color: var(--preto-suave);
-    font-size: 1.2rem;
+    color: var(--azul-claro-muito);
+    font-size: 1.6rem;
     font-family: "Inter", serif;
     font-optical-sizing: auto;
     font-weight: 600;
@@ -133,7 +115,7 @@ body {
 }
 
 .perfil__aside ul li a:hover {
-    color: var(--azul-escuro);
+    color: var(--verde-escuro);
 }
 
 #sair:hover {
@@ -151,6 +133,7 @@ body {
     max-height: 80%;
     flex: 3 1 600px;
     padding: 1rem;
+    background-color: var(--preto);
 }
 
 .dashboard__title {
@@ -159,7 +142,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
-    color: var(--preto-suave);
+    color: var(--branco);
     margin-bottom: 20px;
 }
 
@@ -176,7 +159,7 @@ body {
 }
 
 .dashboard__card p {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     font-family: "Inter", serif;
     font-optical-sizing: auto;
     font-weight: 600;
@@ -190,7 +173,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
-    color: var(--preto-suave);
+    color: var(--branco);
     margin-bottom: 20px;
 }
 
@@ -201,7 +184,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
-    color: var(--preto-suave);
+    color: var(--branco);
     margin-bottom: 20px;
 }
 
@@ -256,7 +239,7 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    background-color: var(--verde-escuro);
     border-radius: 0.625rem;
     padding: 2rem;
     max-width: 100%;
@@ -286,8 +269,13 @@ body {
 }
 
 .user__form--inputslabel {
+    color: var(--branco);
     font-weight: 600;
     display: flex;
+}
+
+#user-email {
+    color: var(--branco);
 }
 
 .user__card figure {
@@ -337,14 +325,14 @@ body {
     font-optical-sizing: auto;
     padding: 12px 20px;
     outline: none;
+    color: var(--branco);
     border: 2px solid var(--azul-geada);
     cursor: pointer;
-    background-color: var(--azul-claro-muito);
+    background-color: var(--azul-escuro);
     width: 100%;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-size: 1rem;
-    color: var(--preto-suave);
 }
 
 #update-password-button:hover,
@@ -413,7 +401,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
-    color: var(--preto-suave);
+    color: var(--branco);
     margin-bottom: 20px;
 }
 
@@ -430,6 +418,10 @@ body {
     font-style: italic;
 }
 
+.planos__container p {
+    color: var(--branco);
+}
+
 .planos__container a {
     color: var(--verde-escuro);
     text-decoration: none;
@@ -440,7 +432,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 40%;
-    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(97,186,255,1) 0%, rgba(166,239,253,1) 90.1% );
+    background-color: var(--verde-escuro);
     border-radius: 10px;
 }
 
@@ -537,7 +529,7 @@ body {
     flex-direction: column;
     width: 75%;
     max-height: 20%;
-    background-image: linear-gradient(120deg, #fdfdfd 90%, rgba(60, 184, 206) 0%);
+    background-color: var(--verde-escuro);
     border-radius: 10px;
 }
 
@@ -547,7 +539,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
-    color: var(--preto-suave);
+    color: var(--branco);
     margin-bottom: 20px;
     margin: 10px;
 }
@@ -558,7 +550,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    color: var(--preto-suave);
+    color: var(--branco);
 }
 
 .planos-show {
@@ -566,6 +558,8 @@ body {
 }
 
 .planos__pay img {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 20px;
     max-width: 60%;
 }
 
@@ -582,8 +576,9 @@ body {
     font-family: "Inter", serif;
     font-size: 1rem;
     cursor: text;
+    margin-top: 20px;
     color: var(--preto-suave);
-    background-color: var(--cinza);
+    background-color: var(--branco);
     border: 1px solid var(--cinza-escuro);
     border-radius: 5px;
     outline: none;
