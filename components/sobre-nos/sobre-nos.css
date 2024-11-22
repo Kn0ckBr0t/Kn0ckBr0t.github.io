@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: var(--azul-escuro);
+    background-image: linear-gradient(135deg, #002B2D 0%, #3FA2F6 100%, rgba(0, 0, 0, 0.5) 100%);
 }
 
 :root {
@@ -123,4 +123,31 @@ body {
 .fas, .fa-solid {
     font-weight: 900;
     overflow-y: hidden;
+}
+
+.sobre-nos-titulo {
+    display: flex;
+    align-items: center;
+    padding: 5vw 5vw;
+    height: 80vh;
+    justify-content: space-evenly;
+}
+
+.sobre-nos-titulo p {
+    font-family: "SUSE", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size:  42pt;
+    width: 60%;
+    color: var(--branco);
+    font-style: normal;
+}
+
+.sobre-nos-titulo span {
+    color: var(--azul-geada);
+}
+
+.sobre-nos-titulo__bgasset {
+    width: 25vw;
+    height: auto;
 }
