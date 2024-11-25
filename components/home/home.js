@@ -17,30 +17,6 @@ ScrollTrigger.create({
   },
 });
 
-var splash = document.getElementById('preloader');
-
-window.addEventListener("load", function() {
-    const letters = document.querySelectorAll("#preloader h1 span");
-
-    gsap.to(letters, {
-        duration: 1,
-        opacity: 0,
-        y: 50,
-        stagger: 0.1,
-        ease: "power2.out",
-        onComplete: function() {
-            gsap.to(splash, {
-                duration: 2,
-                opacity: 0,
-                ease: "power2.out",
-                onComplete: function() {
-                    splash.style.display = "none";
-                }
-            });
-        }
-    });
-});
-
 gsap.registerPlugin(ScrollTrigger);
 gsap.from(".home__title", {
   duration: 2.5,

@@ -47,27 +47,6 @@ body {
     top: 0px !important; 
 }
 
-#preloader {
-    background-image: linear-gradient(135deg, #002B2D 0%, #3FA2F6 100%, rgba(0, 0, 0, 0.5) 100%);
-    height: 100vh;
-    width: 100%;
-    position: fixed;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#preloader h1 {
-    color: #fff;
-    font-family: "SUSE", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-size: 10vw;
-    font-style: normal;
-    list-style: none;
-}
-
 .header {
     overflow: hidden;
     position: fixed;
