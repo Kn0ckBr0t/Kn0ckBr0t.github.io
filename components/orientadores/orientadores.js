@@ -1,18 +1,23 @@
 function searchOrientadores() {
     const input = document.getElementById('search-input').value.toLowerCase();
     const orientadores = document.querySelectorAll('.orientador__item');
+    let hasVisibleOrientadores = false;
+
     orientadores.forEach(orientador => {
         const name = orientador.querySelector('.orientador__name').textContent.toLowerCase();
         if (name.includes(input)) {
-            gsap.to(orientador, { duration: 0.5, opacity: 1, display: 'block' });
+            orientador.style.display = 'flex';
+            gsap.to(orientador, { duration: 0.5, opacity: 1 });
+            hasVisibleOrientadores = true;
         } else {
-            gsap.to(orientador, { duration: 0.5, opacity: 0, display: 'none' });
+            gsap.to(orientador, { duration: 0.5, opacity: 0, onComplete: () => {
+                orientador.style.display = 'none';
+            }});
         }
     });
 
     const noResultsMessage = document.getElementById('no-results-message');
-    const visibleOrientadores = Array.from(orientadores).filter(orientador => orientador.style.display !== 'none');
-    if (visibleOrientadores.length === 0) {
+    if (!hasVisibleOrientadores) {
         noResultsMessage.style.display = 'block';
     } else {
         noResultsMessage.style.display = 'none';

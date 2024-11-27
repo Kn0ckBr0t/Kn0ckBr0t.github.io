@@ -276,6 +276,8 @@ body {
 
 #user-email {
     color: var(--branco);
+    display: flex;
+    margin-bottom: 20px;
 }
 
 .user__card figure {
@@ -318,6 +320,7 @@ body {
 }
 
 #update-password-button,
+.user-url-input,
 #user-url-input,
 #user-input {
     margin-bottom: 15px;
@@ -350,6 +353,11 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.password-input {
+    margin: 5px 0px;
+}
+
+.password-input,
 #user__form--url,
 #user-name-input {
     width: 100%;
@@ -591,4 +599,15 @@ body {
 .planos__pay--copiaecola:focus {
     border-color: var(--azul-claro);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+#file-input-modal {
+    border: none;
+    padding: 2em 4em;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    position: absolute;
+    top: 40%;
+    left: 60%;
+    transform: translate(-50%, -50%);
 }

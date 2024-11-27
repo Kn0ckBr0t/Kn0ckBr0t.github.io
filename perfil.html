@@ -49,8 +49,24 @@
                         <span id="user-name"></span>
                         <label class="user__form--inputslabel">Email: </label>
                         <span id="user-email"></span>
-                        <!--<label class="user__form--inputslabel" style="margin-top: 15px;">Alterar foto</label>
-                        <input type="url" class="user__form--url" name="user__form--url" id="user__form--url" placeholder="URL de sua foto">-->
+                        <span id="user-password"></span>
+                        <dialog id="file-input-modal">
+                            <label class="user__form--inputslabel" style="margin-top: 15px;">Alterar foto</label>
+                            <input type="url" class="user__form--url" name="user__form--url" id="user__form--url" placeholder="URL de sua foto">
+                            <button class="user-url-input" id="file-input-close"> Fechar </button>
+                        </dialog>
+                        <script>
+                            const fileInput = document.getElementById('file-input');
+                            const fileInputModal = document.getElementById('file-input-modal');
+                            const fileInputClose = document.getElementById('file-input-close');
+
+                            fileInput.addEventListener('click', () => {
+                                fileInputModal.showModal();
+                            });
+                            fileInputClose.addEventListener('click', () => {
+                                fileInputModal.close();
+                            });
+                        </script>
                     </form>
                 </section>
             </section>
