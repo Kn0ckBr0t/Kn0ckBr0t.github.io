@@ -196,9 +196,9 @@ body {
 .lgpd {
     background-color: #f0eeee;
     background-image: url(../../assets/images/bodyphone.png);
-    background-size: 16%;	
+    background-size: 20%;	
     background-repeat: no-repeat;
-    background-position: center right 15%;
+    background-position: center right 18%;
     height: 70vh;
     display: flex;
     justify-content: center;
@@ -215,6 +215,7 @@ body {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;
+    width: 100%;
     font-size: 1.6em;
     font-style: normal;
     color: var(--azul-escuro);
