@@ -1,5 +1,5 @@
 import { auth } from './firebase.js';
-import { updateProfile, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, setPersistence, browserLocalPersistence, browserSessionPersistence, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
+import { updateProfile, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, setPersistence, browserLocalPersistence, browserSessionPersistence, EmailAuthProvider, reauthenticateWithCredential, updatePassword, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
 import { collection, doc, setDoc, getDoc, getDocs, query, where, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
 import { db } from './firebase.js';
 
@@ -31,6 +31,41 @@ const login = (event, email, password, rememberMe) => {
             errormessage.textContent = 'Usuário ou senha inválidos';
         });
 };
+
+//FORGOT
+
+const forgotForm = document.querySelector('.forgot__form');
+
+if (forgotForm) {
+    forgotForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const email = forgotForm.querySelector('input[name="email"]').value;
+        forgotPassword(event, email);
+    });
+}
+
+const forgotPassword = (event, email) => {
+    sendPasswordResetEmail(auth, email)
+        .then(() => {
+            const errormessage = document.querySelector('.forgot__form--error');
+            errormessage.style.display = 'block';
+            errormessage.style.color = '#034153';
+            errormessage.textContent = 'Email enviado com sucesso';
+        })
+        .catch((error) => {
+            const errormessage = document.querySelector('.forgot__form--error');
+            errormessage.style.display = 'block';
+            if (error.code === 'auth/user-not-found') {
+                errormessage.textContent = 'Usuário não encontrado';
+            } else if (error.code === 'auth/invalid-email') {
+                errormessage.textContent = 'Email inválido';
+            } else if (error.code === 'auth/too-many-requests') {
+                errormessage.textContent = 'Muitas tentativas. Tente novamente mais tarde.';
+            } else {
+                errormessage.textContent = 'Erro ao enviar email';
+            }
+        });
+}
 
 //SIGNUP
 const signupForm = document.querySelector('.signup__form--form');

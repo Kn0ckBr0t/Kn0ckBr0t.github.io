@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./components/forgot/forgot.css">
+    <link rel="shortcut icon" href="./assets/images/Logo_default/Icon.svg" type="image/x-icon">
+    <link href="./assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="./assets/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="./assets/fontawesome/css/solid.css" rel="stylesheet" />
+    <title>LOGIN</title>
+</head>
+<body>
+    <section class="forgot__container">
+        <section class="forgot__background">
+            <a href="/" class="forgot__background--href"><i class="fa-solid fa-angle-left 2x" style="color: #74C0FC; display: block;"></i></a>
+            <img src="./assets/images/Login__Background.jpg" alt="Background" class="forgot__background--image">
+        </section>
+        <section class="forgot__form">
+            <img src="./assets/images/Logo_default/Icon.svg" alt="Logo" class="forgot__form--logo">
+            <form action="" method="GET" class="forgot--form">
+                <label for="email" class="forgot__form--label">Redefinir sua senha</label>
+                <input type="email" name="email" id="email" class="forgot__form--input" placeholder="Digite seu endereço de email">
+                <p class="forgot__form--error">Email ou senha inválidos</p>
+                <input type="submit" class="forgot__form--button" value="Confirmar">
+                <section class="forgot__form--input-div">
+                    <a href="login" class="forgot__form--link">Voltar</a>
+                </section>
+        </section>
+    </section>
+    <div vw class="enabled" style="overflow-x: visible;">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="firebase/firebase.js" type="module"></script>
+    <script src="firebase/auth.js" type="module"></script>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="components/forgot/forgot.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+</body>
+</html>

@@ -29,5 +29,5 @@ Se você é um jovem em busca de oportunidades ou um mentor disposto a ajudar, o
 
 Para mais informações ou para se conectar conosco, entre em contato:
 
-- **E-mail:** contato@workway.com
-- **Redes Sociais:** [Facebook](#) | [Instagram](#) | [LinkedIn](#)
+- **E-mail:** workway@gmail.com
+- **Redes Sociais:** | [Instagram](https://www.instagram.com/workwaytcc/)
