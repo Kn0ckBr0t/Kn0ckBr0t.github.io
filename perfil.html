@@ -23,7 +23,7 @@
                     <li><a id="menu_planos"><i class="fa-solid fa-wallet" style="display: inline; max-width: 50px;"></i> <p>Planos</p> </a></li>
                 </section>
                 <section class="perfil__aside--ulicons">
-                    <li> <a id="delete"><i class="fa-solid fa-trash" style="display: inline; max-width: 50px;"></i> <p>Excluir</p> </a></li>
+                    <li><a id="modaldelete"><i class="fa-solid fa-trash" style="display: inline; max-width: 50px;"></i> <p>Excluir</p></a></li>
                     <li><a id="sair"><i class="fa-solid fa-arrow-right-from-bracket" style="display: inline; max-width: 50px;"></i> <p>Sair</p> </a></li>
                 </section>
             </ul>
@@ -32,7 +32,7 @@
             <section id="dashboard">
                 <h1 class="dashboard__title">Dashboard</h1>
                 <section class="dashboard__card">
-                    <p>Não há reúniões marcadas</p>
+                    <p id="dashboard_meeting">Não há reuniões marcadas</p>
                 </section>
             </section>
             <section id="perfil">
@@ -60,10 +60,12 @@
                             const fileInputModal = document.getElementById('file-input-modal');
                             const fileInputClose = document.getElementById('file-input-close');
 
-                            fileInput.addEventListener('click', () => {
+                            fileInput.addEventListener('click', (event) => {
+                                event.preventDefault();
                                 fileInputModal.showModal();
                             });
-                            fileInputClose.addEventListener('click', () => {
+                            fileInputClose.addEventListener('click', (event) => {
+                                event.preventDefault();
                                 fileInputModal.close();
                             });
                         </script>
@@ -115,7 +117,6 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/faz-um-pix@2.0.2/lib/browser/faz-um-pix.min.js"></script>
     <script src="firebase/firebase.js" type="module"></script>
-    <script src="firebase/firestore.js" type="module"></script>
     <script src="firebase/auth.js" type="module"></script>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>

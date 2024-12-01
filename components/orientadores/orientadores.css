@@ -189,9 +189,13 @@ body {
     max-height: 300px;
     height: 300px;
     margin: 4em 6px;
+    width: 80%;
+    place-self: center;
     color: var(--branco);
     border-radius: 8px;
-    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    background-image: url(../../assets/images/Orientador_item.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .orientador__item figure {
@@ -207,7 +211,8 @@ body {
     color: var(--branco);
 }
 
-.orientador__item img {
+.orientador__img {
+    overflow: hidden;
     color: var(--branco);
     height: 100%;
     width: 100%;
@@ -243,17 +248,20 @@ body {
 }
 
 .orientador__button {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: inline-block;
     padding: 10px 20px;
-    border: 2px solid var(--azul-escuro);
+    border: none;
     overflow: hidden;
     border-radius: 8px;
     height: 100px;
-    background-color: transparent;
-    color: var(--branco);
-    font-family: "SUSE", sans-serif;
+    background-color: #ffffff;
+    color: #67696c;
+    font-family: "Poppins", sans-serif;
     font-weight: 600;
-    font-size: 16pt;
+    font-size: 12pt;
+    margin: 10px;
+    width: 30%;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -267,8 +275,116 @@ body {
 .orientador__item div {
     color: var(--branco);
     text-align: right;
-    width: 60%;
+    width: 70%;
     align-self: end;
+}
+
+.dialog {
+    border: none;
+    padding: 2em 4em;
+    border-radius: 8px;
+    background-image: url(../../assets/images/Orientador_dialog.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 35%;
+    width: 30%;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1em;
+}
+
+.dialog-content h2 {
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size:  24pt;
+    font-style: normal;
+    color: var(--branco);
+}
+
+.dialog-content label {
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size:  10pt;
+    font-style: normal;
+    color: var(--branco);
+}
+
+.dialog-content input {
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size:  10pt;
+    font-style: normal;
+    color: var(--branco);
+    background-color: var(--azul-escuro);
+    border: none;
+    border-radius: 8px;
+    padding: 0.5em;
+    width: 100%;
+    max-width: 70%;
+}
+
+.dialog-content button {
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size:  12pt;
+    font-style: normal;
+    background-color: #ffffff;
+    color: #67696c;
+    font-family: "Poppins", sans-serif;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5em;
+    width: 100%;
+    max-width: 72%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dialog-content button:hover {
+    background-color: var(--azul-escuro);
+    color: var(--branco);
+}
+
+.dialog__error {
+    display: none;
+    place-self: flex-start;
+    padding: 0px 0px 0px 14%;
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    color: #5fa526;
+}
+
+#cancel-meeting {
+    cursor: pointer;
+    color: #fff;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    transition: 100ms;
+}
+
+#cancel-meeting:hover {
+    transform: scale(1.1);
+    color: var(--preto);
 }
 
 .footer {

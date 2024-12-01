@@ -1,7 +1,6 @@
 import { auth } from './firebase.js';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, setPersistence, browserLocalPersistence, browserSessionPersistence, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
-import { updateProfile } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
-import { collection, doc, setDoc, getDoc, getDocs, query, where } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
+import { updateProfile, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, setPersistence, browserLocalPersistence, browserSessionPersistence, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
+import { collection, doc, setDoc, getDoc, getDocs, query, where, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
 import { db } from './firebase.js';
 
 //LOGIN
@@ -156,17 +155,21 @@ onAuthStateChanged(auth, (user) => {
 
             try {
                 const docRef = doc(db, 'orientador', user.uid);
-                setDoc(docRef, {
-                    photoURL: newPhotoURL
-                }, { merge: true });
-                console.log('Dados do orientador atualizados com sucesso');
+                const docSnap = getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    setDoc(docRef, {
+                        photoURL: newPhotoURL
+                    }, { merge: true });
+                    console.log('Foto do orientador atualizada com sucesso');
+                }
             } catch (e) {
-                console.error('Erro ao atualizar dados do orientador: ', e);
+                console.error('Erro ao atualizar foto do orientador: ', e);
             }
 
             updateProfile(user, { photoURL: newPhotoURL })
                 .then(() => {
-                window.location.reload();
+                    window.location.reload();
                 });
             });
         }
@@ -362,7 +365,7 @@ if (orientadorForm) {
         event.preventDefault();
 
         const nome = orientadorForm.querySelector('input[name="nome"]').value;
-        const idade = orientadorForm.querySelector('input[name="idade"]').value;
+        const idade = Math.trunc(orientadorForm.querySelector('input[name="idade"]').value);
         const linkedin = orientadorForm.querySelector('input[name="linkedin"]').value;
         const experiencia = orientadorForm.querySelector('input[name="experiencia"]').value;
         const errorElement = document.querySelector('.error');
@@ -373,7 +376,7 @@ if (orientadorForm) {
             return;
         }
 
-        const linkedinPattern = /^(https:\/\/)?(www\.)?linkedin\.com\/.*$/;
+        const linkedinPattern = /^(https:\/\/)?(www\.)?(linkedin\.com|br\.linkedin\.com)\/.*$/;
         if (!linkedinPattern.test(linkedin)) {
             errorElement.style.display = 'block';
             errorElement.textContent = 'O link deve ser um URL válido do LinkedIn.';
@@ -386,6 +389,7 @@ if (orientadorForm) {
             try {
                 const docRef = doc(db, 'orientador', user.uid);
                 await setDoc(docRef, {
+                    uid: user.uid,
                     nome,
                     idade,
                     linkedin,
@@ -419,7 +423,7 @@ function displayOrientadores(orientadores) {
         orientadorElement.classList.add('orientador__item');
         orientadorElement.innerHTML = `
             <figure>
-                <img src="${orientador.photoURL || 'default-image-url'}" alt="${orientador.nome}">
+                <img class="orientador__img" src="${orientador.photoURL || 'default-image-url'}" alt="${orientador.nome}">
             </figure>
             <section>
                 <h2 class="orientador__name" style="color: #fff;">${orientador.nome}</h2>
@@ -428,7 +432,7 @@ function displayOrientadores(orientadores) {
                 <p style="color: #fff;"><strong><a href="https://${orientador.linkedin}" target="_blank"><i class="fa-brands fa-linkedin" style="display: inline;"></i>Linkedin</a></strong></p>
             </section>
             <div>
-                <button class="orientador__button">Contratar</button>
+                <button class="orientador__button"><i class="fa-solid fa-video" style="margin-right: 4px; display: inline;"></i>Marcar reúnião</button>
             </div>
         `;
         if (orientadorContainer) {
@@ -437,7 +441,75 @@ function displayOrientadores(orientadores) {
 
         const button = orientadorElement.querySelector('.orientador__button');
         button.addEventListener('click', () => {
-            window.alert('Uma reunião será marcada, fique atento ao seu email. Caso você não tenha disponibilidade, você pode remarcar.');
+            const dialog = document.createElement('dialog');
+            dialog.classList.add('dialog');
+            dialog.innerHTML = `
+                <section class="dialog-content">
+                    <h2>Marcar Reunião</h2>
+                    <label for="meeting-date">Data:</label>
+                    <input type="date" id="meeting-date" required>
+                    <label for="meeting-time">Horário:</label>
+                    <input type="time" id="meeting-time" required>
+                    <button id="schedule-meeting"><i class="fa-solid fa-calendar-days" style="display: inline; margin-right: 4px;"></i>Agendar</button>
+                    <i class="fa-solid fa-xmark fa-2x" id="cancel-meeting"></i>
+                    <span class="dialog__error">Sucesso, aguarde a confirmação do orientador</span>
+                </section>
+            `;
+            document.body.appendChild(dialog);
+            dialog.showModal();
+            document.body.style.height = '100vh';
+            document.body.style.overflow = 'hidden';
+
+            const dialogError = dialog.querySelector('.dialog__error');
+            const scheduleButton = dialog.querySelector('#schedule-meeting');
+            const cancelButton = dialog.querySelector('#cancel-meeting');
+
+            scheduleButton.addEventListener('click', async () => {
+            const meetingDate = dialog.querySelector('#meeting-date').value;
+            const meetingTime = dialog.querySelector('#meeting-time').value;
+
+            if (!meetingDate || !meetingTime) {
+                dialogError.style.display = 'block';
+                dialogError.textContent = 'Por favor, preencha todos os campos';
+                dialogError.style.color = 'red';
+                return;
+            }
+
+            const user = auth.currentUser;
+            const orientadorId = orientador.id;
+
+            if (user) {
+                try {
+                const meetingRef = doc(db, 'meetings', `${user.uid}_${orientadorId}`);
+                await setDoc(meetingRef, {
+                    userId: user.uid,
+                    userEmail: user.email,
+                    orientadorId: orientadorId,
+                    meetingDate: meetingDate,
+                    meetingTime: meetingTime,
+                    timestamp: new Date(),
+                    confirmed: false
+                });
+                dialogError.style.display = 'block';
+
+                setTimeout(() => {
+                    dialog.close();
+                    document.body.style.height = '';
+                    document.body.style.overflow = '';
+                }, 3000);
+                } catch (e) {
+                console.error('Erro ao agendar reunião: ', e);
+                }
+            } else {
+                console.error('Nenhum usuário está logado');
+            }
+            });
+
+            cancelButton.addEventListener('click', () => {
+            dialog.close();
+            document.body.style.height = '';
+            document.body.style.overflow = '';
+            });
         });
     });
 }
@@ -461,20 +533,103 @@ const checkIfUserIsOrientador = async () => {
                     meetingCard.classList.add('meeting-card');
                     meetingCard.innerHTML = `
                         <section class="orientador__container">
-                            <div>
-                                <h1 class="meeting__title">Criar Reunião</h1>
+                            <div style="max-width: 40%;">
+                                <h1 class="meeting__title">Painel de orientador</h1>
                                 <section class="orientador__card">
-                                    <button id="create-meeting-button">Criar Reunião no Google Meet</button>
+                                    <button id="create-meeting-button"><i class="fa-brands fa-google" style="display: inline; max-width: 50px; margin-right: 6px;"></i>Criar Reunião no Google Meet</button>
+                                </section>
+                            </div>
+                            <div>
+                                <h1 class="meeting__title">Alunos</h1>
+                                <section class="orientador__card">
+                                    <div id="displayStudents"></div>
                                 </section>
                             </div>
                         </section>
                     `;
+
+                    const displayStudents = async () => {
+                        const user = auth.currentUser;
+                    
+                        if (user) {
+                            try {
+                                const meetingsQuery = query(
+                                    collection(db, 'meetings'),
+                                    where('orientadorId', '==', user.uid),
+                                    where('confirmed', '==', false)
+                                );
+                                const querySnapshot = await getDocs(meetingsQuery);
+                                const students = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    
+                                const displayStudentsElement = document.getElementById('displayStudents');
+                                if (displayStudentsElement) {
+                                    displayStudentsElement.innerHTML = '';
+                                    if (students.length === 0) {
+                                        displayStudentsElement.textContent = 'Você não possui nenhum aluno.';
+                                    } else {
+                                        students.forEach(student => {
+                                            const studentElement = document.createElement('p');
+                                            studentElement.innerHTML = `${student.userEmail}, ${student.meetingDate}, ${student.meetingTime} <i class="fa-solid fa-check" style="color: #63E6BE; cursor: pointer;" id="studentAprove" data-id="${student.id}"></i><i class="fa-solid fa-xmark" style="color: red; cursor: pointer;" id="studentDecline" data-id="${student.id}"></i>`;
+                                            displayStudentsElement.appendChild(studentElement);
+                                        });
+                    
+                                        document.querySelectorAll('#studentDecline').forEach(button => {
+                                            button.addEventListener('click', async (event) => {
+                                                const studentId = event.target.getAttribute('data-id');
+                                                if (studentId) {
+                                                    try {
+                                                        await deleteDoc(doc(db, 'meetings', studentId));
+                                                        displayStudents();
+                                                    } catch (e) {
+                                                        console.error('Erro ao deletar aluno: ', e);
+                                                    }
+                                                }
+                                            });
+                                        });
+                                    
+                                        document.querySelectorAll('#studentAprove').forEach(button => {
+                                            button.addEventListener('click', async (event) => {
+                                                const studentId = event.target.getAttribute('data-id');
+                                                if (studentId) {
+                                                    try {
+                                                        await setDoc(doc(db, 'meetings', studentId), { confirmed: true }, { merge: true });
+                                                        displayStudents();
+                                                    } catch (e) {
+                                                        console.error('Erro ao aprovar aluno: ', e);
+                                                    }
+                                                }
+                                            });
+                                        });
+                                    }
+                                }
+                            } catch (e) {
+                                console.error('Erro ao buscar alunos: ', e);
+                            }
+                        } else {
+                            console.error('Nenhum usuário está logado');
+                        }
+                    };
+
                     dashboardElement.appendChild(meetingCard);
+
+                    await displayStudents();
 
                     const createMeetingButton = document.getElementById('create-meeting-button');
                     createMeetingButton.addEventListener('click', () => {
                         window.open('https://calendar.google.com/calendar/u/0/r/eventedit?vcon=meet&dates=now&hl=pt-BR', '_blank');
                     });
+
+                    const updateData = document.createElement('section');
+                    updateData.classList.add('atualizarDados-card');
+                    updateData.innerHTML = `
+                        <section class="orientador__container">
+                            <div>
+                                <a href="orientador"><i class="fa-solid fa-pen" style="color: #fff; display: inline;"></i>Atualizar dados de orientador</a>
+                            </div>
+                        </section>
+                    `;
+
+                    dashboardElement.appendChild(updateData);
                 }
             }
         } catch (e) {
@@ -485,9 +640,68 @@ const checkIfUserIsOrientador = async () => {
     }
 };
 
+const checkConfirmedMeetings = async () => {
+    const user = auth.currentUser;
+
+    if (user) {
+        try {
+            const meetingsQuery = query(
+                collection(db, 'meetings'),
+                where('confirmed', '==', true),
+                where('orientadorId', '==', user.uid)
+            );
+            const meetingsQueryUser = query(
+                collection(db, 'meetings'),
+                where('confirmed', '==', true),
+                where('userId', '==', user.uid)
+            );
+
+            const [querySnapshotOrientador, querySnapshotUser] = await Promise.all([
+                getDocs(meetingsQuery),
+                getDocs(meetingsQueryUser)
+            ]);
+
+            const confirmedMeetings = [
+                ...querySnapshotOrientador.docs.map(doc => ({ id: doc.id, ...doc.data() })),
+                ...querySnapshotUser.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+            ];
+
+            const dashboardMeetingElement = document.getElementById('dashboard_meeting');
+            if (dashboardMeetingElement) {
+                if (confirmedMeetings.length > 0) {
+                    dashboardMeetingElement.innerHTML = `Você possui reuniões confirmadas: <a href="https://meet.google.com/landing" target="_blank">Acesse o Google Meet<i class="fa-solid fa-up-right-from-square" style="display: inline; margin-left: 5px;"></i></a><br><a id="clearMeetings" style="cursor: pointer; color: red;"><i class="fa-solid fa-eraser" style="display: inline; margin-right: 5px;"></i>Limpar reuniões</a>`;
+                } else {
+                    dashboardMeetingElement.textContent = 'Não há reuniões marcadas';
+                }
+            }
+
+            const clearMeetingsButton = document.getElementById('clearMeetings');
+            if (clearMeetingsButton) {
+                clearMeetingsButton.addEventListener('click', async () => {
+                    try {
+                        for (const meeting of confirmedMeetings) {
+                            await deleteDoc(doc(db, 'meetings', meeting.id));
+                        }
+                        if (dashboardMeetingElement) {
+                            dashboardMeetingElement.textContent = 'Não há reuniões marcadas';
+                        }
+                    } catch (e) {
+                        console.error('Erro ao deletar reuniões: ', e);
+                    }
+                });
+            }
+        } catch (e) {
+            console.error('Erro ao buscar reuniões confirmadas: ', e);
+        }
+    } else {
+        console.error('Nenhum usuário está logado');
+    }
+};
+
 auth.onAuthStateChanged((user) => {
     if (user) {
         checkIfUserIsOrientador();
+        checkConfirmedMeetings();
     }
 });
 
