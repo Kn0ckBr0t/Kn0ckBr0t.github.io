@@ -375,6 +375,7 @@ body {
 #update-password-button,
 .user-url-input,
 #user-url-input,
+#delete,
 #user-input {
     margin-bottom: 15px;
     font-family: "Inter", serif;
@@ -391,6 +392,7 @@ body {
     font-size: 1rem;
 }
 
+#delete:hover,
 #update-password-button:hover,
 #user-url-input:hover,
 #user-input:hover {
@@ -669,4 +671,36 @@ body {
 
 #file-input-modal::backdrop {
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+#perfil__aside--delete {
+    border: none;
+    padding: 2em 4em;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: #002B2D;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#perfil__aside--delete h1 {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-family: "Poppins", serif;
+    color: var(--branco);
+}
+
+#perfil__aside--delete::backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#modalclose {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: var(--branco);
 }

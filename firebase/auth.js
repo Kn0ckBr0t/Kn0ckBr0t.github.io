@@ -60,11 +60,10 @@ if (signupForm) {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                updateProfile(user, { photoURL: 'https://imagedelivery.net/xE-VtsYZUS2Y8MtLMcbXAg/4f009d8cce14a403163a/sm' });
                 const emailPrefix = email.split('@')[0];
                 const randomNumbers = Math.floor(Math.random() * 1000);
                 const displayName = `${emailPrefix}${randomNumbers}`;
-                updateProfile(user, { displayName: displayName })
+                updateProfile(user, { displayName: displayName, photoURL: 'https://imagedelivery.net/xE-VtsYZUS2Y8MtLMcbXAg/4f009d8cce14a403163a/sm' })
                     .then(() => {
                         window.location.reload();
                     });

@@ -26,6 +26,25 @@
                     <li><a id="modaldelete"><i class="fa-solid fa-trash" style="display: inline; max-width: 50px;"></i> <p>Excluir</p></a></li>
                     <li><a id="sair"><i class="fa-solid fa-arrow-right-from-bracket" style="display: inline; max-width: 50px;"></i> <p>Sair</p> </a></li>
                 </section>
+                <dialog id="perfil__aside--delete">
+                    <h1>Tem certeza que deseja excluir sua conta?</h1>
+                    <button id="delete" style="color: #fff;">Sim</button>
+                    <i class="fa-solid fa-xmark" style="display: inline;" id="modalclose"></i>
+                </dialog>
+                <script>
+                    const modaldelete = document.getElementById('modaldelete');
+                    const modalclose = document.getElementById('modalclose');
+                    const perfilmodaldelete = document.getElementById('perfil__aside--delete');
+                    modaldelete.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        perfilmodaldelete.showModal();
+                    });
+
+                    modalclose.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        perfilmodaldelete.close();
+                    });
+                </script>
             </ul>
         </aside>
         <main class="perfil__container">
