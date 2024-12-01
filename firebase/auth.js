@@ -669,7 +669,7 @@ const checkConfirmedMeetings = async () => {
             const dashboardMeetingElement = document.getElementById('dashboard_meeting');
             if (dashboardMeetingElement) {
                 if (confirmedMeetings.length > 0) {
-                    dashboardMeetingElement.innerHTML = `Você possui reuniões confirmadas: <a href="https://meet.google.com/landing" target="_blank">Acesse o Google Meet<i class="fa-solid fa-up-right-from-square" style="display: inline; margin-left: 5px;"></i></a><br><a id="clearMeetings" style="cursor: pointer; color: red;"><i class="fa-solid fa-eraser" style="display: inline; margin-right: 5px;"></i>Limpar reuniões</a>`;
+                    dashboardMeetingElement.innerHTML = `Você possui reuniões confirmadas: <a href="https://mail.google.com/mail/u/0/" target="_blank">Acesse o Gmail<i class="fa-solid fa-up-right-from-square" style="display: inline; margin-left: 5px;"></i></a><br><a id="clearMeetings" style="cursor: pointer; color: red;"><i class="fa-solid fa-eraser" style="display: inline; margin-right: 5px;"></i>Limpar reuniões</a>`;
                 } else {
                     dashboardMeetingElement.textContent = 'Não há reuniões marcadas';
                 }
