@@ -1,6 +1,6 @@
 import { auth } from './firebase.js';
 import { updateProfile, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, setPersistence, browserLocalPersistence, browserSessionPersistence, EmailAuthProvider, reauthenticateWithCredential, updatePassword, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
-import { collection, doc, setDoc, getDoc, getDocs, query, where, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
+import { collection, doc, setDoc, getDoc, getDocs, query, where, deleteDoc, orderBy, onSnapshot, addDoc } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
 import { db } from './firebase.js';
 
 //LOGIN
@@ -753,3 +753,46 @@ auth.onAuthStateChanged((user) => {
         });
     }
 });
+
+// COMENTÁRIOS
+
+const commentForm = document.querySelector('.comment__form');
+const commentsList = document.querySelector('.comments__list');
+const articleId = document.querySelector('main').getAttribute('data-article-id');
+
+if (commentForm) {
+    commentForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const commentText = commentForm.querySelector('textarea[name="comment"]').value;
+        const user = auth.currentUser;
+        const userName = user ? user.displayName : 'Usuário Anônimo';
+
+        try {
+            await addDoc(collection(db, 'comments'), {
+                text: commentText,
+                user: userName,
+                articleId: articleId,
+                timestamp: new Date()
+            });
+            commentForm.reset();
+        } catch (error) {
+            console.error('Erro ao adicionar comentário: ', error);
+        }
+    });
+}
+
+const loadComments = () => {
+    const q = query(collection(db, 'comments'), where('articleId', '==', articleId), orderBy('timestamp', 'desc'));
+    onSnapshot(q, (querySnapshot) => {
+        commentsList.innerHTML = '';
+        querySnapshot.forEach((doc) => {
+            const comment = doc.data();
+            const commentElement = document.createElement('div');
+            commentElement.classList.add('comment');
+            commentElement.innerHTML = `<p><strong>${comment.user}:</strong> ${comment.text}</p>`;
+            commentsList.appendChild(commentElement);
+        });
+    });
+};
+
+document.addEventListener('DOMContentLoaded', loadComments);

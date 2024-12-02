@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./components/orientadores/orientadores.css">
+    <link rel="stylesheet" href="./components/querocomecar/querocomecar.css">
     <link rel="shortcut icon" href="./assets/images/Logo_default/Icon.svg" type="image/x-icon">
     <link href="./assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
     <link href="./assets/fontawesome/css/brands.css" rel="stylesheet" />
     <link href="./assets/fontawesome/css/solid.css" rel="stylesheet" />
-    <title class="notranslate">Orientadores - WorkWay</title>
+    <title class="notranslate">Quero Começar - WorkWay</title>
     <script type="text/javascript" src="components/googletradutor.js"></script>
 </head>
 <body id="google_translate_element">
@@ -42,15 +42,29 @@
             </div>
         </ul>
     </header>
-    <section class="orientadores">
+    <section class="querocomecar">
         <section class="search-bar">
-            <input type="text" id="search-input" placeholder="Pesquisar orientadores">
-            <button onclick="searchOrientadores()"><i class="fa-solid fa-magnifying-glass fa-2x" style="display: flex; line-height: normal; padding: 0; color: #3FA2F6;"></i></button>
+            <input type="text" id="search-input" placeholder="Pesquisar artigos">
+            <button onclick="searchQuerocomecar()"><i class="fa-solid fa-magnifying-glass fa-2x" style="display: flex; line-height: normal; padding: 0; color: #3FA2F6;"></i></button>
         </section>
-        <section class="orientadores__container">
+        <section class="querocomecar-container">
             <section id="no-results-message">
-                <p>Nenhum orientador encontrado.</p>
+                <p>Nenhum artigo encontrado.</p>
             </section>
+            <section class="querocomecar__item" style="background-image: url(../../artigos/photo/Que\ Caminhos\ Seguir\ Após\ o\ Ensino\ Médio\ Descubra\ Seu\ Próximo\ Passo.png);" id="artigo1">
+                <h1 class="querocomecar__name">Que Caminhos Seguir Após o Ensino Médio? Descubra Seu Próximo Passo!</h1>
+            </section>
+            <section class="querocomecar__item" style="background-image: url(../../artigos/photo/Concursos\ Públicos\ ou\ Empresas\ Privadas\ Qual\ o\ Melhor\ Caminho\ Para\ o\ Seu\ Futuro.png);" id="artigo2">
+                <h1 class="querocomecar__name">Concursos Públicos ou Empresas Privadas: Qual o Melhor Caminho Para o Seu Futuro?</h1>
+            </section>
+            <script>
+                document.getElementById('artigo1').addEventListener('click', () => {
+                    window.location.href = 'Que-Caminhos-Seguir-Após-o-Ensino-Médio-Descubra-Seu-Próximo-Passo';
+                });
+                document.getElementById('artigo2').addEventListener('click', () => {
+                    window.location.href = 'Concursos-Públicos-ou-Empresas-Privadas-Qual-o-Melhor-Caminho-Para-o-Seu-Futuro';
+                });
+            </script>
         </section>
     </section>
     <footer class="footer">
@@ -106,6 +120,6 @@
     <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="components/orientadores/orientadores.js"></script>
+    <script src="components/querocomecar/querocomecar.js"></script>
 </body>
 </html>
