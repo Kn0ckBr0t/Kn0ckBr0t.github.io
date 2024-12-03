@@ -391,9 +391,9 @@ const displayCurrentPlan = async () => {
                         title: 'Acesso restrito',
                         text: 'Você precisa ter um plano para acessar essa página.',
                         icon: 'warning',
-                        confirmButtonText: 'Fazer login'
+                        confirmButtonText: 'Fazer upgrade'
                     }).then(() => {
-                        window.location.href = 'login';
+                        window.location.href = 'perfil';
                     });
                 }
             }
