@@ -2,7 +2,7 @@ import { auth } from './firebase.js';
 import { updateProfile, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, setPersistence, browserLocalPersistence, browserSessionPersistence, EmailAuthProvider, reauthenticateWithCredential, updatePassword, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js';
 import { collection, doc, setDoc, getDoc, getDocs, query, where, deleteDoc, orderBy, onSnapshot, addDoc } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
 import { db } from './firebase.js';
-
+import Swal from 'https://cdn.skypack.dev/sweetalert2';
 //LOGIN
 const loginForm = document.querySelector('.login__form--form');
 
@@ -244,7 +244,12 @@ onAuthStateChanged(auth, (user) => {
             const confirmPassword = confirmPasswordInput.value;
 
             if (newPassword !== confirmPassword) {
-                alert('As novas senhas não coincidem');
+                Swal.fire({
+                    title: 'Erro',
+                    text: 'As senhas não coincidem.',
+                    icon: 'error',
+                    confirmButtonText: 'Tentar novamente'
+                });
                 return;
             }
 
@@ -253,10 +258,20 @@ onAuthStateChanged(auth, (user) => {
                 const credential = EmailAuthProvider.credential(user.email, currentPassword);
                 await reauthenticateWithCredential(user, credential);
                 await updatePassword(user, newPassword);
-                alert('Senha atualizada com sucesso');
+                Swal.fire({
+                    title: 'Sucesso',
+                    text: 'Senha atualizada com sucesso.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
                 window.location.reload();
             } catch (error) {
-                alert('Erro ao atualizar a senha: ' + error.message);
+                Swal.fire({
+                    title: 'Erro',
+                    text: 'Erro ao atualizar a senha: ' + error.message,
+                    icon: 'error',
+                    confirmButtonText: 'Tentar novamente'
+                });
             }
             });
         }
@@ -266,7 +281,7 @@ onAuthStateChanged(auth, (user) => {
         if (loginOrProfileLink) {
             loginOrProfileLink.innerHTML = '<a href="login"><i class="fa-solid fa-user fa-2x"></i></a>';
         }
-        const profilePage = window.location.pathname.endsWith('perfil') || window.location.pathname.endsWith('perfil.html') || window.location.pathname.endsWith('orientador') || window.location.pathname.endsWith('orientador.html');
+        const profilePage = window.location.pathname.endsWith('perfil') || window.location.pathname.endsWith('perfil.html') || window.location.pathname.endsWith('orientador') || window.location.pathname.endsWith('orientador.html') || window.location.pathname.endsWith('orientadores.html') || window.location.pathname.endsWith('orientador');
         if (profilePage) {
             window.location.href = 'login';
         }
@@ -372,8 +387,14 @@ const displayCurrentPlan = async () => {
                 const restrictedPages = ['/orientador', '/orientador.html', '/orientadores', '/orientadores.html'];
 
                 if (restrictedPages.includes(currentUrl)) {
-                    alert('Você precisa ter um plano para acessar esta página.');
-                    window.location.href = '/perfil';
+                    Swal.fire({
+                        title: 'Acesso restrito',
+                        text: 'Você precisa ter um plano para acessar essa página.',
+                        icon: 'warning',
+                        confirmButtonText: 'Fazer login'
+                    }).then(() => {
+                        window.location.href = 'login';
+                    });
                 }
             }
         } catch (e) {
@@ -789,7 +810,8 @@ const loadComments = () => {
             const comment = doc.data();
             const commentElement = document.createElement('div');
             commentElement.classList.add('comment');
-            commentElement.innerHTML = `<p><strong>${comment.user}:</strong> ${comment.text}</p>`;
+            const date = comment.timestamp.toDate().toLocaleString();
+            commentElement.innerHTML = `<p><strong>${comment.user}:</strong> ${comment.text}</p><p>${date}</p>`;
             commentsList.appendChild(commentElement);
         });
     });
